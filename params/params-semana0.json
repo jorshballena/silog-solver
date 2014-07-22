@@ -1,0 +1,156 @@
+{
+    "MateriasPrimas": {
+        "CapacidadActualAlmacen": 50000,
+        "CapacidadEnConstruccion": 0,
+        "Alternic": {
+            "AlmacenPropio": 24000,
+            "AlmacenAlquilado": 0,
+            "Detencion": 0,
+            "EnTransito": {
+                "Semana1": 24000,
+                "Semana2": 19200,
+                "Semana3": 0,
+                "Semana4": 0
+            }
+        },
+        "Nikelen": {
+            "AlmacenPropio": 16000,
+            "AlmacenAlquilado": 0,
+            "Detencion": 0,
+            "EnTransito": {
+                "Semana1": 16000,
+                "Semana2": 0,
+                "Semana3": 0,
+                "Semana4": 0
+            }
+        },
+        "Progesic": {
+            "AlmacenPropio": 8000,
+            "AlmacenAlquilado": 0,
+            "Detencion": 0,
+            "EnTransito": {
+                "Semana1": 8000,
+                "Semana2": 6400,
+                "Semana3": 0,
+                "Semana4": 0
+            }
+        }
+    },
+    "ProductoTerminado": {
+        "Monopolis": {
+            "DemandaEstimada": {
+                "Semana0": 500,
+                "Semana1": 520,
+                "Semana2": 480,
+                "Semana3": 650,
+                "Semana4": 500,
+                "Semana5": 550,
+                "Semana6": 600,
+                "Semana7": 560,
+                "Semana8": 750
+            },
+            "EnTransito": {
+                "Semana1": 0,
+                "Semana2": 0,
+                "Semana3": 0,
+                "Semana4": 0
+            },
+            "CapacidadActualAlmacen": 2500,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 2000,
+            "Detencion": 0
+        },
+        "Bipolis": {
+            "DemandaEstimada": {
+                "Semana0": 450,
+                "Semana1": 520,
+                "Semana2": 480,
+                "Semana3": 650,
+                "Semana4": 500,
+                "Semana5": 550,
+                "Semana6": 600,
+                "Semana7": 560,
+                "Semana8": 750
+            },
+            "EnTransito": {
+                "Semana1": 400,
+                "Semana2": 320,
+                "Semana3": 0,
+                "Semana4": 0
+            },
+            "CapacidadActualAlmacen": 500,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 400,
+            "Detencion": 0
+        },
+        "Tripolis": {
+            "DemandaEstimada": {
+                "Semana0": 450,
+                "Semana1": 520,
+                "Semana2": 480,
+                "Semana3": 650,
+                "Semana4": 500,
+                "Semana5": 550,
+                "Semana6": 600,
+                "Semana7": 560,
+                "Semana8": 750
+            },
+            "EnTransito": {
+                "Semana1": 400,
+                "Semana2": 320,
+                "Semana3": 0,
+                "Semana4": 0
+            },
+            "CapacidadActualAlmacen": 500,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 400,
+            "Detencion": 0
+        },
+        "Tetrapolis": {
+            "DemandaEstimada": {
+                "Semana0": 450,
+                "Semana1": 520,
+                "Semana2": 480,
+                "Semana3": 650,
+                "Semana4": 500,
+                "Semana5": 550,
+                "Semana6": 600,
+                "Semana7": 560,
+                "Semana8": 750
+            },
+            "EnTransito": {
+                "Semana1": 400,
+                "Semana2": 320,
+                "Semana3": 0,
+                "Semana4": 0
+            },
+            "CapacidadActualAlmacen": 500,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 400,
+            "Detencion": 0
+        },
+        "Metropolis": {
+            "DemandaEstimada": {
+                "Semana0": 450,
+                "Semana1": 520,
+                "Semana2": 480,
+                "Semana3": 650,
+                "Semana4": 500,
+                "Semana5": 550,
+                "Semana6": 600,
+                "Semana7": 560,
+                "Semana8": 750
+            },
+            "EnTransito": {
+                "Semana1": 400,
+                "Semana2": 0,
+                "Semana3": 0,
+                "Semana4": 0
+            },
+            "CapacidadActualAlmacen": 500,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 400,
+            "Detencion": 0
+        }
+    }
+}
