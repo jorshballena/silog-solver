@@ -17,6 +17,7 @@ namespace SilogSolver
             model.AddDecision(ventas);
             model.AddConstraint("s" + semana + "_ventas_" + ciudad + "_demanda", ventas <= demanda);
             model.AddConstraint("s" + semana + "_ventas_" + ciudad + "_disponibilidad", ventas <= disponible);
+            model.AddConstraint("s" + semana + "_ventas_" + ciudad + "_min", ventas >= demanda * 0.81);
 
             return ventas;
         }
@@ -122,7 +123,6 @@ namespace SilogSolver
         public const double CostoTransporteTierraProgesic = 0.30;
         public const double CostoTransporteAereoProgesic = 1;
 
-
         public const double CostoOrdenamientoMP = 50;
 
         public const double CostoFijoProduccion = 100;
@@ -160,6 +160,10 @@ namespace SilogSolver
 
         public const uint CapacidadAlmacenAlquilado = 4000;
         public const double PrimaCargaIncompleta = 0.25;
+
+
+        public const double ConsumoMaximoDeDisponible = 1;
+
     }
 
     public class ListDecisionesSemanales : List<IDecisionesSemanales>
@@ -221,6 +225,9 @@ namespace SilogSolver
 
             var d_semana = new ListDecisionesSemanales(model, numSemanas + 1);
 
+            Term ventasTotal;
+            Term demandaTotal;
+
             #region Produccion
             var consumo_alternic = new Term[numSemanas + 1];
             var disponible_alternic = new Term[numSemanas + 1];
@@ -243,6 +250,9 @@ namespace SilogSolver
             var disponible_Metropolis = new Term[numSemanas + 1];
 
             var Ventas = new Term[numSemanas + 1];
+            var UnidadesVendidas = new Term[numSemanas + 1];
+            var DemandaTotalEstimada = new Term[numSemanas + 1];
+            var NivelDeServicio = new Decision[numSemanas + 1];
 
             #endregion
 
@@ -351,12 +361,37 @@ namespace SilogSolver
             disponible_Metropolis[0] = parametrosEntrada.ProductoTerminado.Metropolis.Disponible;
             d_semana[0].Metropolis.Ventas = model.AddVentasSemana(0, "metropolis", parametrosEntrada.ProductoTerminado.Metropolis.DemandaEstimada.GetSemana(0), disponible_Metropolis[0]);
 
-            Ventas[0] =
-                d_semana[0].Monopolis.Ventas * SilogParams.PrecioDeVenta +
-                d_semana[0].Bipolis.Ventas * SilogParams.PrecioDeVenta +
-                d_semana[0].Tripolis.Ventas * SilogParams.PrecioDeVenta +
-                d_semana[0].Tetrapolis.Ventas * SilogParams.PrecioDeVenta +
-                d_semana[0].Metropolis.Ventas * SilogParams.PrecioDeVenta;
+            UnidadesVendidas[0] = d_semana[0].Monopolis.Ventas +
+                d_semana[0].Bipolis.Ventas +
+                d_semana[0].Tripolis.Ventas +
+                d_semana[0].Tetrapolis.Ventas +
+                d_semana[0].Metropolis.Ventas;
+
+
+
+            DemandaTotalEstimada[0] =
+                 parametrosEntrada.ProductoTerminado.Monopolis.DemandaEstimada.GetSemana(0) +
+                 parametrosEntrada.ProductoTerminado.Bipolis.DemandaEstimada.GetSemana(0) +
+                 parametrosEntrada.ProductoTerminado.Tripolis.DemandaEstimada.GetSemana(0) +
+                 parametrosEntrada.ProductoTerminado.Tetrapolis.DemandaEstimada.GetSemana(0) +
+                 parametrosEntrada.ProductoTerminado.Metropolis.DemandaEstimada.GetSemana(0);
+
+            NivelDeServicio[0] = new Decision(Domain.Real, "s0_nivelDeServicio");
+            model.AddDecision(NivelDeServicio[0]);
+
+
+            model.AddConstraint("s0_constraint_nivelDeServicio", NivelDeServicio[0] == UnidadesVendidas[0] / DemandaTotalEstimada[0]);
+
+            if (parametrosEntrada.NivelDeServicioMínimo > 0)
+            {
+                model.AddConstraint("s0_min_nivelDeServicio", UnidadesVendidas[0] >= DemandaTotalEstimada[0] * parametrosEntrada.NivelDeServicioMínimo);
+            }
+
+            ventasTotal = UnidadesVendidas[0];
+            demandaTotal = DemandaTotalEstimada[0];
+
+            Ventas[0] = UnidadesVendidas[0] * SilogParams.PrecioDeVenta;
+
 
             #endregion
 
@@ -516,15 +551,15 @@ namespace SilogSolver
 
                 consumo_alternic[1] = SilogParams.AlternicPorProductoTerminado * d_semana[1].UnidadesAProducir;
                 disponible_alternic[1] = disponible_alternic[0] - consumo_alternic[0] + d_semana[0].Alternic.Aereo + parametrosEntrada.MateriasPrimas.Alternic.EnTransito.GetSemana(1);
-                model.AddConstraint("s" + 1 + "_consumoMax_alternic", consumo_alternic[1] <= disponible_alternic[1]);
+                model.AddConstraint("s" + 1 + "_consumoMax_alternic", consumo_alternic[1] <= disponible_alternic[1] * SilogParams.ConsumoMaximoDeDisponible);
 
                 consumo_nikelen[1] = SilogParams.NikelenPorProductoTerminado * d_semana[1].UnidadesAProducir;
                 disponible_nikelen[1] = disponible_nikelen[0] - consumo_nikelen[0] + d_semana[0].Nikelen.Aereo + parametrosEntrada.MateriasPrimas.Nikelen.EnTransito.GetSemana(1);
-                model.AddConstraint("s" + 1 + "_consumoMax_nikelen", consumo_nikelen[1] <= disponible_nikelen[1]);
+                model.AddConstraint("s" + 1 + "_consumoMax_nikelen", consumo_nikelen[1] <= disponible_nikelen[1] * SilogParams.ConsumoMaximoDeDisponible);
 
                 consumo_progesic[1] = SilogParams.ProgesicPorProductoTerminado * d_semana[1].UnidadesAProducir;
                 disponible_progesic[1] = disponible_progesic[0] - consumo_progesic[0] + parametrosEntrada.MateriasPrimas.Progesic.EnTransito.GetSemana(1);
-                model.AddConstraint("s" + 1 + "_consumoMax_progesic", consumo_progesic[1] <= disponible_progesic[1]);
+                model.AddConstraint("s" + 1 + "_consumoMax_progesic", consumo_progesic[1] <= disponible_progesic[1] * SilogParams.ConsumoMaximoDeDisponible);
 
                 #endregion
 
@@ -554,12 +589,33 @@ namespace SilogSolver
                 disponible_Metropolis[1] = (disponible_Metropolis[0] - d_semana[0].Metropolis.Ventas) + d_semana[0].Metropolis.Transporte.Aereo + parametrosEntrada.ProductoTerminado.Metropolis.EnTransito.GetSemana(1);
                 d_semana[1].Metropolis.Ventas = model.AddVentasSemana(1, "metropolis", parametrosEntrada.ProductoTerminado.Metropolis.DemandaEstimada.GetSemana(1), disponible_Metropolis[1]);
 
-                Ventas[1] =
-                    d_semana[1].Monopolis.Ventas * SilogParams.PrecioDeVenta +
-                    d_semana[1].Bipolis.Ventas * SilogParams.PrecioDeVenta +
-                    d_semana[1].Tripolis.Ventas * SilogParams.PrecioDeVenta +
-                    d_semana[1].Tetrapolis.Ventas * SilogParams.PrecioDeVenta +
-                    d_semana[1].Metropolis.Ventas * SilogParams.PrecioDeVenta;
+                UnidadesVendidas[1] = d_semana[1].Monopolis.Ventas +
+                             d_semana[1].Bipolis.Ventas +
+                             d_semana[1].Tripolis.Ventas +
+                             d_semana[1].Tetrapolis.Ventas +
+                             d_semana[1].Metropolis.Ventas;
+
+                DemandaTotalEstimada[1] =
+                 parametrosEntrada.ProductoTerminado.Monopolis.DemandaEstimada.GetSemana(1) +
+                 parametrosEntrada.ProductoTerminado.Bipolis.DemandaEstimada.GetSemana(1) +
+                 parametrosEntrada.ProductoTerminado.Tripolis.DemandaEstimada.GetSemana(1) +
+                 parametrosEntrada.ProductoTerminado.Tetrapolis.DemandaEstimada.GetSemana(1) +
+                 parametrosEntrada.ProductoTerminado.Metropolis.DemandaEstimada.GetSemana(1);
+
+                NivelDeServicio[1] = new Decision(Domain.Real, "s1_nivelDeServicio");
+                model.AddDecision(NivelDeServicio[1]);
+                model.AddConstraint("s1_constraint_nivelDeServicio", NivelDeServicio[1] == UnidadesVendidas[1] / DemandaTotalEstimada[1]);
+
+                if (parametrosEntrada.NivelDeServicioMínimo > 1)
+                {
+                    model.AddConstraint("s1_nivelDeServicio", UnidadesVendidas[1] >= DemandaTotalEstimada[1] * parametrosEntrada.NivelDeServicioMínimo);
+                }
+
+                ventasTotal = ventasTotal + UnidadesVendidas[1];
+                demandaTotal = demandaTotal + DemandaTotalEstimada[1];
+
+                Ventas[1] = UnidadesVendidas[1] * SilogParams.PrecioDeVenta;
+
 
                 #endregion
 
@@ -717,15 +773,15 @@ namespace SilogSolver
 
                 consumo_alternic[currentWeek] = SilogParams.AlternicPorProductoTerminado * d_semana[currentWeek].UnidadesAProducir;
                 disponible_alternic[currentWeek] = disponible_alternic[currentWeek - 1] - consumo_alternic[currentWeek - 1] + d_semana[currentWeek - 1].Alternic.Aereo + d_semana[currentWeek - 3].Alternic.Terrestre + parametrosEntrada.MateriasPrimas.Alternic.EnTransito.GetSemana(currentWeek);
-                model.AddConstraint("s" + currentWeek + "_consumoMax_alternic", consumo_alternic[currentWeek] <= disponible_alternic[currentWeek]);
+                model.AddConstraint("s" + currentWeek + "_consumoMax_alternic", consumo_alternic[currentWeek] <= disponible_alternic[currentWeek] * SilogParams.ConsumoMaximoDeDisponible);
 
                 consumo_nikelen[currentWeek] = SilogParams.NikelenPorProductoTerminado * d_semana[currentWeek].UnidadesAProducir;
                 disponible_nikelen[currentWeek] = disponible_nikelen[currentWeek - 1] - consumo_nikelen[currentWeek - 1] + d_semana[currentWeek - 1].Nikelen.Aereo + d_semana[currentWeek - 2].Nikelen.Terrestre + parametrosEntrada.MateriasPrimas.Nikelen.EnTransito.GetSemana(currentWeek);
-                model.AddConstraint("s" + currentWeek + "_consumoMax_nikelen", consumo_nikelen[currentWeek] <= disponible_nikelen[currentWeek]);
+                model.AddConstraint("s" + currentWeek + "_consumoMax_nikelen", consumo_nikelen[currentWeek] <= disponible_nikelen[currentWeek] * SilogParams.ConsumoMaximoDeDisponible);
 
                 consumo_progesic[currentWeek] = SilogParams.ProgesicPorProductoTerminado * d_semana[currentWeek].UnidadesAProducir;
                 disponible_progesic[currentWeek] = disponible_progesic[currentWeek - 1] - consumo_progesic[currentWeek - 1] + d_semana[currentWeek - 2].Progesic.Aereo + d_semana[currentWeek - 5].Progesic.Terrestre + parametrosEntrada.MateriasPrimas.Progesic.EnTransito.GetSemana(currentWeek);
-                model.AddConstraint("s" + currentWeek + "_consumoMax_progesic", consumo_progesic[currentWeek] <= disponible_progesic[currentWeek]);
+                model.AddConstraint("s" + currentWeek + "_consumoMax_progesic", consumo_progesic[currentWeek] <= disponible_progesic[currentWeek] * SilogParams.ConsumoMaximoDeDisponible);
 
                 #endregion
 
@@ -755,12 +811,33 @@ namespace SilogSolver
                 disponible_Metropolis[currentWeek] = (disponible_Metropolis[currentWeek - 1] - d_semana[currentWeek - 1].Metropolis.Ventas) + d_semana[currentWeek - 1].Metropolis.Transporte.Aereo + d_semana[currentWeek - 2].Metropolis.Transporte.Terrestre + parametrosEntrada.ProductoTerminado.Metropolis.EnTransito.GetSemana(currentWeek);
                 d_semana[currentWeek].Metropolis.Ventas = model.AddVentasSemana(currentWeek, "metropolis", parametrosEntrada.ProductoTerminado.Metropolis.DemandaEstimada.GetSemana(currentWeek), disponible_Metropolis[currentWeek]);
 
-                Ventas[currentWeek] =
-                    d_semana[currentWeek].Monopolis.Ventas * SilogParams.PrecioDeVenta +
-                    d_semana[currentWeek].Bipolis.Ventas * SilogParams.PrecioDeVenta +
-                    d_semana[currentWeek].Tripolis.Ventas * SilogParams.PrecioDeVenta +
-                    d_semana[currentWeek].Tetrapolis.Ventas * SilogParams.PrecioDeVenta +
-                    d_semana[currentWeek].Metropolis.Ventas * SilogParams.PrecioDeVenta;
+                UnidadesVendidas[currentWeek] = d_semana[currentWeek].Monopolis.Ventas +
+                    d_semana[currentWeek].Bipolis.Ventas +
+                    d_semana[currentWeek].Tripolis.Ventas +
+                    d_semana[currentWeek].Tetrapolis.Ventas +
+                    d_semana[currentWeek].Metropolis.Ventas;
+
+                DemandaTotalEstimada[currentWeek] =
+                    parametrosEntrada.ProductoTerminado.Monopolis.DemandaEstimada.GetSemana(currentWeek) +
+                    parametrosEntrada.ProductoTerminado.Bipolis.DemandaEstimada.GetSemana(currentWeek) +
+                    parametrosEntrada.ProductoTerminado.Tripolis.DemandaEstimada.GetSemana(currentWeek) +
+                    parametrosEntrada.ProductoTerminado.Tetrapolis.DemandaEstimada.GetSemana(currentWeek) +
+                    parametrosEntrada.ProductoTerminado.Metropolis.DemandaEstimada.GetSemana(currentWeek);
+
+                var nivelDeServicio = new Decision(Domain.Real, "s" + currentWeek + "_nivelDeServicio");
+                model.AddDecision(nivelDeServicio);
+                model.AddConstraint("s" + currentWeek + "_constraint_nivelDeServicio", nivelDeServicio == UnidadesVendidas[currentWeek] / DemandaTotalEstimada[currentWeek]);
+
+                if (parametrosEntrada.NivelDeServicioMínimo > 0)
+                {
+                    model.AddConstraint("s" + currentWeek + "_min_nivelDeServicio", UnidadesVendidas[currentWeek] >= DemandaTotalEstimada[currentWeek] * parametrosEntrada.NivelDeServicioMínimo);
+                }
+
+
+                ventasTotal = ventasTotal + UnidadesVendidas[currentWeek];
+                demandaTotal = demandaTotal + DemandaTotalEstimada[currentWeek];
+
+                Ventas[currentWeek] = UnidadesVendidas[currentWeek] * SilogParams.PrecioDeVenta;
 
                 #endregion
 
@@ -910,6 +987,11 @@ namespace SilogSolver
                 Utilidad[currentWeek] = Ventas[currentWeek] - Gastos[currentWeek];
             }
 
+            var nivelDeServicioAcumulado = new Decision(Domain.Real, "totales_nivelDeServicio");
+            model.AddDecision(nivelDeServicioAcumulado);
+
+            model.AddConstraint("totales_const_nivelDeServicio", nivelDeServicioAcumulado == ventasTotal / demandaTotal);
+
 
             #region semana N+1
 
@@ -952,6 +1034,15 @@ namespace SilogSolver
 
             #endregion
 
+
+            for (var i = 0; i < Utilidad.Length; i++)
+            {
+                var dec = new Decision(Domain.Real, "s" + i + "_Utilidad");
+                model.AddDecision(dec);
+                model.AddConstraint("s" + i + "_const_utilidad", dec == Utilidad[i]);
+            }
+
+
             var UtilidadTerm = Utilidad.Aggregate((Term)0, (term, term1) => term + term1);
 
             model.AddGoal("maximizarUtilidad", GoalKind.Maximize, UtilidadTerm);
@@ -959,8 +1050,38 @@ namespace SilogSolver
             try
             {
                 Solution solution = context.Solve();
-                Report report = solution.GetReport();
+                Report report = solution.GetReport(ReportVerbosity.SolverDetails);
+
+                var ordered = solution.Decisions.GroupBy(c => c.Name.Substring(0, c.Name.IndexOf('_')));
+
                 Console.Write("{0}", report);
+
+                foreach (var t in ordered)
+                {
+                    Console.WriteLine(("".PadLeft(9, '=') + t.Key).PadRight(20, '='));
+
+                    var subG = t.GroupBy(c => GetNextIdentifier(c.Name, t.Key.Length + 1));
+
+                    foreach (var subGG in subG)
+                    {
+                        Console.WriteLine(("".PadLeft(9, '-') + subGG.Key).PadRight(20, '-'));
+
+                        foreach (var dec in subGG.OrderBy(c => c.Name))
+                        {
+                            Console.WriteLine(string.Format("{0}: {1}", dec.Name, Math.Round(dec.ToDouble(), 3)));
+                        }
+                        Console.WriteLine();
+
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine();
+
+
+                }
+
+
+
             }
             catch (Exception ex)
             {
@@ -969,6 +1090,18 @@ namespace SilogSolver
 
             Console.ReadLine();
         }
+
+
+        private static string GetNextIdentifier(string id, int prefixLength)
+        {
+            var f = id.Substring(prefixLength);
+
+            if (!f.Contains("_"))
+                return f;
+
+            return f.Substring(0, f.IndexOf('_'));
+        }
+
     }
 
 
@@ -1017,8 +1150,8 @@ namespace SilogSolver
     {
         public DecisionesMovimiento(Model model, string prefix)
         {
-            Aereo = new Decision(Domain.IntegerNonnegative, prefix + "_A");
-            Terrestre = new Decision(Domain.IntegerNonnegative, prefix + "_T");
+            Aereo = new Decision(Domain.IntegerNonnegative, prefix + "_transporte_Aereo");
+            Terrestre = new Decision(Domain.IntegerNonnegative, prefix + "_transporte_Terrestre");
 
             AlmacenPropio = new Decision(Domain.IntegerNonnegative, prefix + "_AlmacenPropio");
             AlmacenAlquilado = new Decision(Domain.IntegerNonnegative, prefix + "_AlmacenAlquilado");
@@ -1170,6 +1303,8 @@ namespace SilogSolver
     #region ParametrosEntrada
     public class ParametrosDeEntrada
     {
+        private double _nivelDeServicioMínimo;
+
         public ParametrosDeEntrada()
         {
             MateriasPrimas = new ParametrosMateriasPrimas();
@@ -1179,6 +1314,23 @@ namespace SilogSolver
         public int CantidadDeSemanas { get; set; }
 
         public PrimaPorCarga CalcularPrimaPorCargaIncompleta { get; set; }
+
+
+        public double NivelDeServicioMínimo
+        {
+            get { return _nivelDeServicioMínimo; }
+            set
+            {
+                if (value < 0 || value > 1)
+                {
+                    throw new ArgumentOutOfRangeException("NivelDeServicioMínimo debe estar entre 0 y 1");
+                }
+                else
+                {
+                    _nivelDeServicioMínimo = value;
+                }
+            }
+        }
 
         public enum PrimaPorCarga
         {

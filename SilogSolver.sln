@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication9", "ConsoleApplication9.csproj", "{0711A96C-812A-4977-89C3-EBDC9A550B67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilogSolver", "SilogSolver.csproj", "{0711A96C-812A-4977-89C3-EBDC9A550B67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

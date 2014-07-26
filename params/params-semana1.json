@@ -1,11 +1,12 @@
-{
-    "CantidadDeSemanas": 6,
-    "CalcularPrimaPorCargaIncompleta": "Both",
+﻿{
+    "CantidadDeSemanas": 7,
+    "CalcularPrimaPorCargaIncompleta": "MateriaPrima",
+    "NivelDeServicioMínimo" : 0.0,
     "MateriasPrimas": {
         "CapacidadActualAlmacen": 50000,
         "CapacidadEnConstruccion": 4000,
         "Alternic": {
-            "AlmacenPropio": 19200,
+            "AlmacenPropio": 24000,
             "AlmacenAlquilado": 0,
             "Detencion": 0,
             "EnTransito": {
@@ -41,14 +42,14 @@
     "ProductoTerminado": {
         "Monopolis": {
             "DemandaEstimada": {
-                "Semana0": 520,
-                "Semana1": 480,
-                "Semana2": 650,
-                "Semana3": 500,
-                "Semana4": 550,
-                "Semana5": 600,
-                "Semana6": 560,
-                "Semana7": 750,
+                "Semana0": 500,
+                "Semana1": 460,
+                "Semana2": 640,
+                "Semana3": 477,
+                "Semana4": 525,
+                "Semana5": 573,
+                "Semana6": 535,
+                "Semana7": 741,
             },
             "EnTransito": {
                 "Semana1": 0,
@@ -63,12 +64,12 @@
         },
         "Bipolis": {
             "DemandaEstimada": {
-                "Semana0": 520,
-                "Semana1": 480,
+                "Semana0": 488,
+                "Semana1": 448,
                 "Semana2": 650,
-                "Semana3": 500,
-                "Semana4": 550,
-                "Semana5": 600,
+                "Semana3": 485,
+                "Semana4": 531,
+                "Semana5": 582,
                 "Semana6": 560,
                 "Semana7": 750,
             },
@@ -85,12 +86,12 @@
         },
         "Tripolis": {
             "DemandaEstimada": {
-                "Semana0": 520,
-                "Semana1": 480,
+                "Semana0": 476,
+                "Semana1": 438,
                 "Semana2": 650,
-                "Semana3": 500,
-                "Semana4": 550,
-                "Semana5": 600,
+                "Semana3": 485,
+                "Semana4": 520,
+                "Semana5": 571,
                 "Semana6": 560,
                 "Semana7": 750,
             },
@@ -107,12 +108,12 @@
         },
         "Tetrapolis": {
             "DemandaEstimada": {
-                "Semana0": 520,
-                "Semana1": 480,
+                "Semana0": 476,
+                "Semana1": 438,
                 "Semana2": 650,
-                "Semana3": 500,
-                "Semana4": 550,
-                "Semana5": 600,
+                "Semana3": 485,
+                "Semana4": 529,
+                "Semana5": 582,
                 "Semana6": 560,
                 "Semana7": 750,
             },
@@ -129,12 +130,12 @@
         },
         "Metropolis": {
             "DemandaEstimada": {
-                "Semana0": 520,
-                "Semana1": 480,
+                "Semana0": 467,
+                "Semana1": 430,
                 "Semana2": 650,
-                "Semana3": 500,
-                "Semana4": 550,
-                "Semana5": 600,
+                "Semana3": 485,
+                "Semana4": 528,
+                "Semana5": 582,
                 "Semana6": 560,
                 "Semana7": 750,
             },
