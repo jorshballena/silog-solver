@@ -51,8 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Parametros.cs" />
+    <Compile Include="Decisiones.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SilogParams.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

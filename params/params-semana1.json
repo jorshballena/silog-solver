@@ -1,7 +1,7 @@
 ﻿{
     "CantidadDeSemanas": 7,
     "CalcularPrimaPorCargaIncompleta": "MateriaPrima",
-    "NivelDeServicioMínimo" : 0.0,
+    "NivelDeServicioMínimo" : 0.8196,
     "MateriasPrimas": {
         "CapacidadActualAlmacen": 50000,
         "CapacidadEnConstruccion": 4000,
