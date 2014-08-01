@@ -22,7 +22,7 @@ namespace SilogSolver
         public int CantidadDeSemanas { get; set; }
 
         public PrimaPorCarga CalcularPrimaPorCargaIncompleta { get; set; }
-        
+
         public double NivelDeServicioMínimo
         {
             get { return _nivelDeServicioMínimo; }
@@ -43,8 +43,14 @@ namespace SilogSolver
         public enum MaximizeParams
         {
             Utilidad,
-            NivelDeServicio
+            NivelDeServicio,
+            Compuesto
         }
+
+        public uint VentasPrevias { get; set; }
+        public uint DemandasPrevias { get; set; }
+        public uint InversionMantenimiento { get; set; }
+        public double UtilidadAcumulada { get; set; }
 
         public enum PrimaPorCarga
         {
@@ -56,6 +62,15 @@ namespace SilogSolver
         public ParametrosMateriasPrimas MateriasPrimas { get; set; }
 
         public ParametrosProductoTerminado ProductoTerminado { get; set; }
+        public ScoresEstimados ScoresEstimados { get; set; }
+    }
+
+    public class ScoresEstimados
+    {
+        public double UtilidadMinima { get; set; }
+        public double UtilidadMaxima { get; set; }
+        public double NivelDeServicioMinimo { get; set; }
+        public double NivelDeServicioMaximo { get; set; }
     }
 
     public class ParametrosMateriasPrimas
@@ -146,6 +161,7 @@ namespace SilogSolver
             EnTransito = new EnTransito();
         }
 
+        public string CityName { get; set; }
         public DemandaEstimada DemandaEstimada { get; set; }
         public EnTransito EnTransito { get; set; }
         public int CapacidadActualAlmacen { get; set; }

@@ -7,23 +7,23 @@ namespace SilogSolver
 
     public class DecisionesSemanales : IDecisionesSemanales
     {
-        public DecisionesSemanales(Model model, string prefix)
+        public DecisionesSemanales(Model model, string prefix, string monopolis, string bipolis, string tripolis, string tetrapolis, string metropolis)
         {
             AgrandarAlmacen = new Decision(Domain.Boolean, prefix + "_agrandarAlmacen");
             AlquilarAlmacen = new Decision(Domain.Boolean, prefix + "_alquilarAlmacen");
             UnidadesAProducir = new Decision(Domain.IntegerNonnegative, prefix + "_unidadesAProducir");
 
             model.AddDecisions((Decision)AgrandarAlmacen, (Decision)AlquilarAlmacen, (Decision)UnidadesAProducir);
-          
+
             Alternic = new DecisionesMateriaPrima(model, prefix + "_alternic");
             Nikelen = new DecisionesMateriaPrima(model, prefix + "_nikelen");
             Progesic = new DecisionesMateriaPrima(model, prefix + "_progesic");
 
-            Monopolis = new DecisionesCiudad(model, prefix + "_monopolis");
-            Bipolis = new DecisionesCiudad(model, prefix + "_bipolis");
-            Tripolis = new DecisionesCiudad(model, prefix + "_tripolis");
-            Tetrapolis = new DecisionesCiudad(model, prefix + "_tetrapolis");
-            Metropolis = new DecisionesCiudad(model, prefix + "_metropolis");
+            Monopolis = new DecisionesCiudad(model, prefix + "_" + monopolis);
+            Bipolis = new DecisionesCiudad(model, prefix + "_" + bipolis);
+            Tripolis = new DecisionesCiudad(model, prefix + "_" + tripolis);
+            Tetrapolis = new DecisionesCiudad(model, prefix + "_" + tetrapolis);
+            Metropolis = new DecisionesCiudad(model, prefix + "_" + metropolis);
 
 
             model.AddConstraint(prefix + "_constraint_unidadesAProducir", UnidadesAProducir <= 3370);

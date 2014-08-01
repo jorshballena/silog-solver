@@ -1,0 +1,693 @@
+===Solver Foundation Service Report===
+Date: 7/30/2014 10:01:16 PM
+Version: Microsoft Solver Foundation 3.0.2.10889 Standard Edition
+Model Name: DefaultModel
+Capabilities Applied: MILP
+Solve Time (ms): 1249
+Total Time (ms): 1327
+Solve Completion Status: Optimal
+Solver Selected: SolverFoundation.Plugin.Gurobi.GurobiSolver
+===Solution Details===
+Goals:
+maximizarNivelDeServicio: 0.969602796931145
+
+
+=================== s0 ===========================
+------------------- agrandarAlmacen --------------
+s0_agrandarAlmacen: 1
+
+------------------- alquilarAlmacen --------------
+s0_alquilarAlmacen: 1
+
+------------------- unidadesAProducir ------------
+s0_unidadesAProducir: 2250
+
+------------------- alternic ---------------------
+s0_alternic_AlmacenAlquilado: 0
+s0_alternic_AlmacenPropio: 27000
+s0_alternic_Detencion: 0
+s0_alternic_transporte_Aereo: 0
+s0_alternic_transporte_Terrestre: 28000
+
+------------------- nikelen ----------------------
+s0_nikelen_AlmacenAlquilado: 0
+s0_nikelen_AlmacenPropio: 18000
+s0_nikelen_Detencion: 0
+s0_nikelen_transporte_Aereo: 0
+s0_nikelen_transporte_Terrestre: 20624
+
+------------------- progesic ---------------------
+s0_progesic_AlmacenAlquilado: 0
+s0_progesic_AlmacenPropio: 9000
+s0_progesic_Detencion: 0
+s0_progesic_transporte_Aereo: 6500
+s0_progesic_transporte_Terrestre: 9300
+
+------------------- monopolis --------------------
+s0_monopolis_agrandarAlmacen: 0
+s0_monopolis_almacenPropio: 468
+s0_monopolis_Detencion: 0
+s0_monopolis_transporte_Aereo: 0
+s0_monopolis_transporte_Terrestre: 0
+s0_monopolis_ventas: 460
+
+------------------- bipolis ----------------------
+s0_bipolis_agrandarAlmacen: 1
+s0_bipolis_almacenPropio: 368
+s0_bipolis_Detencion: 0
+s0_bipolis_transporte_Aereo: 130
+s0_bipolis_transporte_Terrestre: 0
+s0_bipolis_ventas: 368
+
+------------------- tripolis ---------------------
+s0_tripolis_agrandarAlmacen: 0
+s0_tripolis_almacenPropio: 350
+s0_tripolis_Detencion: 0
+s0_tripolis_transporte_Aereo: 60
+s0_tripolis_transporte_Terrestre: 55
+s0_tripolis_ventas: 350
+
+------------------- tetrapolis -------------------
+s0_tetrapolis_agrandarAlmacen: 0
+s0_tetrapolis_almacenPropio: 350
+s0_tetrapolis_Detencion: 0
+s0_tetrapolis_transporte_Aereo: 650
+s0_tetrapolis_transporte_Terrestre: 0
+s0_tetrapolis_ventas: 350
+
+------------------- metropolis -------------------
+s0_metropolis_agrandarAlmacen: 0
+s0_metropolis_almacenPropio: 350
+s0_metropolis_Detencion: 0
+s0_metropolis_transporte_Aereo: 77
+s0_metropolis_transporte_Terrestre: 560
+s0_metropolis_ventas: 350
+
+------------------- tot --------------------------
+s0_tot_nivelDeServicio: 0.848
+
+------------------- container --------------------
+s0_container_aereo_alternic: 0
+s0_container_aereo_bipolis: 1
+s0_container_aereo_metropolis: 0
+s0_container_aereo_nikelen: 0
+s0_container_aereo_progesic: 1
+s0_container_aereo_tetrapolis: 5
+s0_container_aereo_tripolis: 0
+s0_container_terrestre_alternic: 2
+s0_container_terrestre_bipolis: 0
+s0_container_terrestre_metropolis: 2
+s0_container_terrestre_nikelen: 1
+s0_container_terrestre_progesic: 0
+s0_container_terrestre_tetrapolis: 0
+s0_container_terrestre_tripolis: 0
+
+------------------- parcial ----------------------
+s0_parcial_aereo_alternic: 0
+s0_parcial_aereo_bipolis: 0
+s0_parcial_aereo_metropolis: 77
+s0_parcial_aereo_nikelen: 0
+s0_parcial_aereo_progesic: 0
+s0_parcial_aereo_tetrapolis: 0
+s0_parcial_aereo_tripolis: 60
+s0_parcial_terrestre_alternic: 0
+s0_parcial_terrestre_bipolis: 0
+s0_parcial_terrestre_metropolis: 0
+s0_parcial_terrestre_nikelen: 6624
+s0_parcial_terrestre_progesic: 9300
+s0_parcial_terrestre_tetrapolis: 0
+s0_parcial_terrestre_tripolis: 55
+
+------------------- Utilidad ---------------------
+s0_Utilidad: 3554
+
+
+
+=================== s1 ===========================
+------------------- agrandarAlmacen --------------
+s1_agrandarAlmacen: 1
+
+------------------- alquilarAlmacen --------------
+s1_alquilarAlmacen: 0
+
+------------------- unidadesAProducir ------------
+s1_unidadesAProducir: 2417
+
+------------------- alternic ---------------------
+s1_alternic_AlmacenAlquilado: 0
+s1_alternic_AlmacenPropio: 29004
+s1_alternic_Detencion: 0
+s1_alternic_transporte_Aereo: 0
+s1_alternic_transporte_Terrestre: 28000
+
+------------------- nikelen ----------------------
+s1_nikelen_AlmacenAlquilado: 3340
+s1_nikelen_AlmacenPropio: 15996
+s1_nikelen_Detencion: 0
+s1_nikelen_transporte_Aereo: 0
+s1_nikelen_transporte_Terrestre: 28000
+
+------------------- progesic ---------------------
+s1_progesic_AlmacenAlquilado: 0
+s1_progesic_AlmacenPropio: 13000
+s1_progesic_Detencion: 0
+s1_progesic_transporte_Aereo: 1752
+s1_progesic_transporte_Terrestre: 6840
+
+------------------- monopolis --------------------
+s1_monopolis_agrandarAlmacen: 0
+s1_monopolis_almacenPropio: 713
+s1_monopolis_Detencion: 0
+s1_monopolis_transporte_Aereo: 0
+s1_monopolis_transporte_Terrestre: 0
+s1_monopolis_ventas: 640
+
+------------------- bipolis ----------------------
+s1_bipolis_agrandarAlmacen: 1
+s1_bipolis_almacenPropio: 500
+s1_bipolis_Detencion: 190
+s1_bipolis_transporte_Aereo: 260
+s1_bipolis_transporte_Terrestre: 280
+s1_bipolis_ventas: 650
+
+------------------- tripolis ---------------------
+s1_tripolis_agrandarAlmacen: 0
+s1_tripolis_almacenPropio: 600
+s1_tripolis_Detencion: 50
+s1_tripolis_transporte_Aereo: 0
+s1_tripolis_transporte_Terrestre: 0
+s1_tripolis_ventas: 650
+
+------------------- tetrapolis -------------------
+s1_tetrapolis_agrandarAlmacen: 1
+s1_tetrapolis_almacenPropio: 550
+s1_tetrapolis_Detencion: 100
+s1_tetrapolis_transporte_Aereo: 520
+s1_tetrapolis_transporte_Terrestre: 32
+s1_tetrapolis_ventas: 650
+
+------------------- metropolis -------------------
+s1_metropolis_agrandarAlmacen: 0
+s1_metropolis_almacenPropio: 600
+s1_metropolis_Detencion: 50
+s1_metropolis_transporte_Aereo: 0
+s1_metropolis_transporte_Terrestre: 453
+s1_metropolis_ventas: 650
+
+------------------- tot --------------------------
+s1_tot_nivelDeServicio: 1
+
+------------------- container --------------------
+s1_container_aereo_alternic: 0
+s1_container_aereo_bipolis: 2
+s1_container_aereo_metropolis: 0
+s1_container_aereo_nikelen: 0
+s1_container_aereo_progesic: 0
+s1_container_aereo_tetrapolis: 4
+s1_container_aereo_tripolis: 0
+s1_container_terrestre_alternic: 2
+s1_container_terrestre_bipolis: 1
+s1_container_terrestre_metropolis: 1
+s1_container_terrestre_nikelen: 2
+s1_container_terrestre_progesic: 0
+s1_container_terrestre_tetrapolis: 0
+s1_container_terrestre_tripolis: 0
+
+------------------- parcial ----------------------
+s1_parcial_aereo_alternic: 0
+s1_parcial_aereo_bipolis: 0
+s1_parcial_aereo_metropolis: 0
+s1_parcial_aereo_nikelen: 0
+s1_parcial_aereo_progesic: 1752
+s1_parcial_aereo_tetrapolis: 0
+s1_parcial_aereo_tripolis: 0
+s1_parcial_terrestre_alternic: 0
+s1_parcial_terrestre_bipolis: 0
+s1_parcial_terrestre_metropolis: 173
+s1_parcial_terrestre_nikelen: 0
+s1_parcial_terrestre_progesic: 6840
+s1_parcial_terrestre_tetrapolis: 32
+s1_parcial_terrestre_tripolis: 0
+
+------------------- Utilidad ---------------------
+s1_Utilidad: 42081.945
+
+
+
+=================== s2 ===========================
+------------------- agrandarAlmacen --------------
+s2_agrandarAlmacen: 1
+
+------------------- alquilarAlmacen --------------
+s2_alquilarAlmacen: 0
+
+------------------- unidadesAProducir ------------
+s2_unidadesAProducir: 2433
+
+------------------- alternic ---------------------
+s2_alternic_AlmacenAlquilado: 0
+s2_alternic_AlmacenPropio: 29496
+s2_alternic_Detencion: 0
+s2_alternic_transporte_Aereo: 0
+s2_alternic_transporte_Terrestre: 36196
+
+------------------- nikelen ----------------------
+s2_nikelen_AlmacenAlquilado: 0
+s2_nikelen_AlmacenPropio: 20624
+s2_nikelen_Detencion: 0
+s2_nikelen_transporte_Aereo: 0
+s2_nikelen_transporte_Terrestre: 14000
+
+------------------- progesic ---------------------
+s2_progesic_AlmacenAlquilado: 0
+s2_progesic_AlmacenPropio: 9832
+s2_progesic_Detencion: 0
+s2_progesic_transporte_Aereo: 0
+s2_progesic_transporte_Terrestre: 0
+
+------------------- monopolis --------------------
+s2_monopolis_agrandarAlmacen: 0
+s2_monopolis_almacenPropio: 477
+s2_monopolis_Detencion: 0
+s2_monopolis_transporte_Aereo: 0
+s2_monopolis_transporte_Terrestre: 0
+s2_monopolis_ventas: 477
+
+------------------- bipolis ----------------------
+s2_bipolis_agrandarAlmacen: 0
+s2_bipolis_almacenPropio: 550
+s2_bipolis_Detencion: 30
+s2_bipolis_transporte_Aereo: 520
+s2_bipolis_transporte_Terrestre: 23
+s2_bipolis_ventas: 485
+
+------------------- tripolis ---------------------
+s2_tripolis_agrandarAlmacen: 0
+s2_tripolis_almacenPropio: 560
+s2_tripolis_Detencion: 0
+s2_tripolis_transporte_Aereo: 390
+s2_tripolis_transporte_Terrestre: 0
+s2_tripolis_ventas: 485
+
+------------------- tetrapolis -------------------
+s2_tetrapolis_agrandarAlmacen: 0
+s2_tetrapolis_almacenPropio: 520
+s2_tetrapolis_Detencion: 0
+s2_tetrapolis_transporte_Aereo: 520
+s2_tetrapolis_transporte_Terrestre: 0
+s2_tetrapolis_ventas: 485
+
+------------------- metropolis -------------------
+s2_metropolis_agrandarAlmacen: 0
+s2_metropolis_almacenPropio: 560
+s2_metropolis_Detencion: 0
+s2_metropolis_transporte_Aereo: 0
+s2_metropolis_transporte_Terrestre: 560
+s2_metropolis_ventas: 485
+
+------------------- tot --------------------------
+s2_tot_nivelDeServicio: 1
+
+------------------- container --------------------
+s2_container_aereo_alternic: 0
+s2_container_aereo_bipolis: 4
+s2_container_aereo_metropolis: 0
+s2_container_aereo_nikelen: 0
+s2_container_aereo_progesic: 0
+s2_container_aereo_tetrapolis: 4
+s2_container_aereo_tripolis: 3
+s2_container_terrestre_alternic: 2
+s2_container_terrestre_bipolis: 0
+s2_container_terrestre_metropolis: 2
+s2_container_terrestre_nikelen: 1
+s2_container_terrestre_progesic: 0
+s2_container_terrestre_tetrapolis: 0
+s2_container_terrestre_tripolis: 0
+
+------------------- parcial ----------------------
+s2_parcial_aereo_alternic: 0
+s2_parcial_aereo_bipolis: 0
+s2_parcial_aereo_metropolis: 0
+s2_parcial_aereo_nikelen: 0
+s2_parcial_aereo_progesic: 0
+s2_parcial_aereo_tetrapolis: 0
+s2_parcial_aereo_tripolis: 0
+s2_parcial_terrestre_alternic: 8196
+s2_parcial_terrestre_bipolis: 23
+s2_parcial_terrestre_metropolis: 0
+s2_parcial_terrestre_nikelen: 0
+s2_parcial_terrestre_progesic: 0
+s2_parcial_terrestre_tetrapolis: 0
+s2_parcial_terrestre_tripolis: 0
+
+------------------- Utilidad ---------------------
+s2_Utilidad: 21312.265
+
+
+
+=================== s3 ===========================
+------------------- agrandarAlmacen --------------
+s3_agrandarAlmacen: 1
+
+------------------- alquilarAlmacen --------------
+s3_alquilarAlmacen: 0
+
+------------------- unidadesAProducir ------------
+s3_unidadesAProducir: 2173
+
+------------------- alternic ---------------------
+s3_alternic_AlmacenAlquilado: 0
+s3_alternic_AlmacenPropio: 28300
+s3_alternic_Detencion: 0
+s3_alternic_transporte_Aereo: 0
+s3_alternic_transporte_Terrestre: 24000
+
+------------------- nikelen ----------------------
+s3_nikelen_AlmacenAlquilado: 0
+s3_nikelen_AlmacenPropio: 29008
+s3_nikelen_Detencion: 152
+s3_nikelen_transporte_Aereo: 0
+s3_nikelen_transporte_Terrestre: 18504
+
+------------------- progesic ---------------------
+s3_progesic_AlmacenAlquilado: 0
+s3_progesic_AlmacenPropio: 8692
+s3_progesic_Detencion: 0
+s3_progesic_transporte_Aereo: 0
+s3_progesic_transporte_Terrestre: 0
+
+------------------- monopolis --------------------
+s3_monopolis_agrandarAlmacen: 0
+s3_monopolis_almacenPropio: 525
+s3_monopolis_Detencion: 0
+s3_monopolis_transporte_Aereo: 0
+s3_monopolis_transporte_Terrestre: 0
+s3_monopolis_ventas: 525
+
+------------------- bipolis ----------------------
+s3_bipolis_agrandarAlmacen: 0
+s3_bipolis_almacenPropio: 600
+s3_bipolis_Detencion: 15
+s3_bipolis_transporte_Aereo: 235
+s3_bipolis_transporte_Terrestre: 0
+s3_bipolis_ventas: 531
+
+------------------- tripolis ---------------------
+s3_tripolis_agrandarAlmacen: 0
+s3_tripolis_almacenPropio: 520
+s3_tripolis_Detencion: 0
+s3_tripolis_transporte_Aereo: 571
+s3_tripolis_transporte_Terrestre: 0
+s3_tripolis_ventas: 520
+
+------------------- tetrapolis -------------------
+s3_tetrapolis_agrandarAlmacen: 0
+s3_tetrapolis_almacenPropio: 599
+s3_tetrapolis_Detencion: 0
+s3_tetrapolis_transporte_Aereo: 520
+s3_tetrapolis_transporte_Terrestre: 0
+s3_tetrapolis_ventas: 529
+
+------------------- metropolis -------------------
+s3_metropolis_agrandarAlmacen: 0
+s3_metropolis_almacenPropio: 528
+s3_metropolis_Detencion: 0
+s3_metropolis_transporte_Aereo: 22
+s3_metropolis_transporte_Terrestre: 560
+s3_metropolis_ventas: 528
+
+------------------- tot --------------------------
+s3_tot_nivelDeServicio: 1
+
+------------------- container --------------------
+s3_container_aereo_alternic: 0
+s3_container_aereo_bipolis: 1
+s3_container_aereo_metropolis: 0
+s3_container_aereo_nikelen: 0
+s3_container_aereo_progesic: 0
+s3_container_aereo_tetrapolis: 4
+s3_container_aereo_tripolis: 4
+s3_container_terrestre_alternic: 1
+s3_container_terrestre_bipolis: 0
+s3_container_terrestre_metropolis: 2
+s3_container_terrestre_nikelen: 1
+s3_container_terrestre_progesic: 0
+s3_container_terrestre_tetrapolis: 0
+s3_container_terrestre_tripolis: 0
+
+------------------- parcial ----------------------
+s3_parcial_aereo_alternic: 0
+s3_parcial_aereo_bipolis: 105
+s3_parcial_aereo_metropolis: 22
+s3_parcial_aereo_nikelen: 0
+s3_parcial_aereo_progesic: 0
+s3_parcial_aereo_tetrapolis: 0
+s3_parcial_aereo_tripolis: 51
+s3_parcial_terrestre_alternic: 10000
+s3_parcial_terrestre_bipolis: 0
+s3_parcial_terrestre_metropolis: 0
+s3_parcial_terrestre_nikelen: 4504
+s3_parcial_terrestre_progesic: 0
+s3_parcial_terrestre_tetrapolis: 0
+s3_parcial_terrestre_tripolis: 0
+
+------------------- Utilidad ---------------------
+s3_Utilidad: 29718.855
+
+
+
+=================== s4 ===========================
+------------------- agrandarAlmacen --------------
+s4_agrandarAlmacen: 0
+
+------------------- alquilarAlmacen --------------
+s4_alquilarAlmacen: 1
+
+------------------- unidadesAProducir ------------
+s4_unidadesAProducir: 2500
+
+------------------- alternic ---------------------
+s4_alternic_AlmacenAlquilado: 0
+s4_alternic_AlmacenPropio: 30224
+s4_alternic_Detencion: 0
+s4_alternic_transporte_Aereo: 0
+s4_alternic_transporte_Terrestre: 0
+
+------------------- nikelen ----------------------
+s4_nikelen_AlmacenAlquilado: 0
+s4_nikelen_AlmacenPropio: 25776
+s4_nikelen_Detencion: 0
+s4_nikelen_transporte_Aereo: 0
+s4_nikelen_transporte_Terrestre: 16000
+
+------------------- progesic ---------------------
+s4_progesic_AlmacenAlquilado: 0
+s4_progesic_AlmacenPropio: 14000
+s4_progesic_Detencion: 0
+s4_progesic_transporte_Aereo: 0
+s4_progesic_transporte_Terrestre: 0
+
+------------------- monopolis --------------------
+s4_monopolis_agrandarAlmacen: 0
+s4_monopolis_almacenPropio: 573
+s4_monopolis_Detencion: 0
+s4_monopolis_transporte_Aereo: 0
+s4_monopolis_transporte_Terrestre: 0
+s4_monopolis_ventas: 573
+
+------------------- bipolis ----------------------
+s4_bipolis_agrandarAlmacen: 0
+s4_bipolis_almacenPropio: 599
+s4_bipolis_Detencion: 0
+s4_bipolis_transporte_Aereo: 520
+s4_bipolis_transporte_Terrestre: 0
+s4_bipolis_ventas: 582
+
+------------------- tripolis ---------------------
+s4_tripolis_agrandarAlmacen: 0
+s4_tripolis_almacenPropio: 571
+s4_tripolis_Detencion: 0
+s4_tripolis_transporte_Aereo: 560
+s4_tripolis_transporte_Terrestre: 0
+s4_tripolis_ventas: 571
+
+------------------- tetrapolis -------------------
+s4_tetrapolis_agrandarAlmacen: 0
+s4_tetrapolis_almacenPropio: 590
+s4_tetrapolis_Detencion: 0
+s4_tetrapolis_transporte_Aereo: 520
+s4_tetrapolis_transporte_Terrestre: 0
+s4_tetrapolis_ventas: 582
+
+------------------- metropolis -------------------
+s4_metropolis_agrandarAlmacen: 0
+s4_metropolis_almacenPropio: 582
+s4_metropolis_Detencion: 0
+s4_metropolis_transporte_Aereo: 0
+s4_metropolis_transporte_Terrestre: 0
+s4_metropolis_ventas: 582
+
+------------------- tot --------------------------
+s4_tot_nivelDeServicio: 1
+
+------------------- container --------------------
+s4_container_aereo_alternic: 0
+s4_container_aereo_bipolis: 4
+s4_container_aereo_metropolis: 0
+s4_container_aereo_nikelen: 0
+s4_container_aereo_progesic: 0
+s4_container_aereo_tetrapolis: 4
+s4_container_aereo_tripolis: 4
+s4_container_terrestre_alternic: 0
+s4_container_terrestre_bipolis: 0
+s4_container_terrestre_metropolis: 0
+s4_container_terrestre_nikelen: 1
+s4_container_terrestre_progesic: 0
+s4_container_terrestre_tetrapolis: 0
+s4_container_terrestre_tripolis: 0
+
+------------------- parcial ----------------------
+s4_parcial_aereo_alternic: 0
+s4_parcial_aereo_bipolis: 0
+s4_parcial_aereo_metropolis: 0
+s4_parcial_aereo_nikelen: 0
+s4_parcial_aereo_progesic: 0
+s4_parcial_aereo_tetrapolis: 0
+s4_parcial_aereo_tripolis: 40
+s4_parcial_terrestre_alternic: 0
+s4_parcial_terrestre_bipolis: 0
+s4_parcial_terrestre_metropolis: 0
+s4_parcial_terrestre_nikelen: 2000
+s4_parcial_terrestre_progesic: 0
+s4_parcial_terrestre_tetrapolis: 0
+s4_parcial_terrestre_tripolis: 0
+
+------------------- Utilidad ---------------------
+s4_Utilidad: 42885
+
+
+
+=================== s5 ===========================
+------------------- agrandarAlmacen --------------
+s5_agrandarAlmacen: 0
+
+------------------- alquilarAlmacen --------------
+s5_alquilarAlmacen: 0
+
+------------------- unidadesAProducir ------------
+s5_unidadesAProducir: 3035
+
+------------------- alternic ---------------------
+s5_alternic_AlmacenAlquilado: 0
+s5_alternic_AlmacenPropio: 36420
+s5_alternic_Detencion: 0
+s5_alternic_transporte_Aereo: 0
+s5_alternic_transporte_Terrestre: 0
+
+------------------- nikelen ----------------------
+s5_nikelen_AlmacenAlquilado: 0
+s5_nikelen_AlmacenPropio: 24280
+s5_nikelen_Detencion: 0
+s5_nikelen_transporte_Aereo: 0
+s5_nikelen_transporte_Terrestre: 0
+
+------------------- progesic ---------------------
+s5_progesic_AlmacenAlquilado: 0
+s5_progesic_AlmacenPropio: 13300
+s5_progesic_Detencion: 0
+s5_progesic_transporte_Aereo: 0
+s5_progesic_transporte_Terrestre: 0
+
+------------------- monopolis --------------------
+s5_monopolis_agrandarAlmacen: 0
+s5_monopolis_almacenPropio: 2500
+s5_monopolis_Detencion: 0
+s5_monopolis_transporte_Aereo: 0
+s5_monopolis_transporte_Terrestre: 0
+s5_monopolis_ventas: 535
+
+------------------- bipolis ----------------------
+s5_bipolis_agrandarAlmacen: 0
+s5_bipolis_almacenPropio: 560
+s5_bipolis_Detencion: 0
+s5_bipolis_transporte_Aereo: 0
+s5_bipolis_transporte_Terrestre: 0
+s5_bipolis_ventas: 560
+
+------------------- tripolis ---------------------
+s5_tripolis_agrandarAlmacen: 0
+s5_tripolis_almacenPropio: 560
+s5_tripolis_Detencion: 0
+s5_tripolis_transporte_Aereo: 0
+s5_tripolis_transporte_Terrestre: 0
+s5_tripolis_ventas: 560
+
+------------------- tetrapolis -------------------
+s5_tetrapolis_agrandarAlmacen: 0
+s5_tetrapolis_almacenPropio: 560
+s5_tetrapolis_Detencion: 0
+s5_tetrapolis_transporte_Aereo: 0
+s5_tetrapolis_transporte_Terrestre: 0
+s5_tetrapolis_ventas: 560
+
+------------------- metropolis -------------------
+s5_metropolis_agrandarAlmacen: 0
+s5_metropolis_almacenPropio: 560
+s5_metropolis_Detencion: 0
+s5_metropolis_transporte_Aereo: 0
+s5_metropolis_transporte_Terrestre: 0
+s5_metropolis_ventas: 560
+
+------------------- tot --------------------------
+s5_tot_nivelDeServicio: 1
+
+------------------- container --------------------
+s5_container_aereo_alternic: 0
+s5_container_aereo_bipolis: 0
+s5_container_aereo_metropolis: 0
+s5_container_aereo_nikelen: 0
+s5_container_aereo_progesic: 0
+s5_container_aereo_tetrapolis: 0
+s5_container_aereo_tripolis: 0
+s5_container_terrestre_alternic: 0
+s5_container_terrestre_bipolis: 0
+s5_container_terrestre_metropolis: 0
+s5_container_terrestre_nikelen: 0
+s5_container_terrestre_progesic: 0
+s5_container_terrestre_tetrapolis: 0
+s5_container_terrestre_tripolis: 0
+
+------------------- parcial ----------------------
+s5_parcial_aereo_alternic: 0
+s5_parcial_aereo_bipolis: 0
+s5_parcial_aereo_metropolis: 0
+s5_parcial_aereo_nikelen: 0
+s5_parcial_aereo_progesic: 0
+s5_parcial_aereo_tetrapolis: 0
+s5_parcial_aereo_tripolis: 0
+s5_parcial_terrestre_alternic: 0
+s5_parcial_terrestre_bipolis: 0
+s5_parcial_terrestre_metropolis: 0
+s5_parcial_terrestre_nikelen: 0
+s5_parcial_terrestre_progesic: 0
+s5_parcial_terrestre_tetrapolis: 0
+s5_parcial_terrestre_tripolis: 0
+
+------------------- Utilidad ---------------------
+s5_Utilidad: 61006.725
+
+
+
+=================== totales ======================
+------------------- disponibilidad ---------------
+totales_disponibilidad_Alternic_Final: 24000
+totales_disponibilidad_Nikelen_Final: 16000
+totales_disponibilidad_Progesic_Final: 8000
+totales_disponibilidad_PT_Final: 5000
+
+------------------- nivelDeServicio --------------
+totales_nivelDeServicio: 0.97
+
+------------------- Utilidad ---------------------
+totales_Utilidad: 224132.54
+

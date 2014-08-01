@@ -1,0 +1,165 @@
+﻿{
+    "CantidadDeSemanas": 8,
+    "CalcularPrimaPorCargaIncompleta": "MateriaPrima",
+    "Maximize": "Compuesto",
+    "NivelDeServicioMínimo": 0,
+    "UtilidadMínima": 0,
+    "MateriasPrimas": {
+        "CapacidadActualAlmacen": 50000,
+        "CapacidadEnConstruccion": 0000,
+        "Alternic": {
+            "AlmacenPropio": 24000,
+            "AlmacenAlquilado": 0,
+            "Detencion": 0,
+            "EnTransito": {
+                "Semana1": 24000,
+                "Semana2": 19200,
+                "Semana3": 0,
+                "Semana4": 0
+            }
+        },
+        "Nikelen": {
+            "AlmacenPropio": 16000,
+            "AlmacenAlquilado": 0,
+            "Detencion": 0,
+            "EnTransito": {
+                "Semana1": 16000,
+                "Semana2": 0,
+                "Semana3": 0,
+                "Semana4": 0
+            }
+        },
+        "Progesic": {
+            "AlmacenPropio": 8000,
+            "AlmacenAlquilado": 0,
+            "Detencion": 0,
+            "EnTransito": {
+                "Semana1": 8000,
+                "Semana2": 6400,
+                "Semana3": 0,
+                "Semana4": 0
+            }
+        }
+    },
+    "ProductoTerminado": {
+        "Monopolis": {
+            "CityName": "Bipolis",
+            "DemandaEstimada": {
+                "Semana0": 435,
+                "Semana1": 505,
+                "Semana2": 460,
+                "Semana3": 640,
+                "Semana4": 477,
+                "Semana5": 525,
+                "Semana6": 573,
+                "Semana7": 535
+            },
+            "EnTransito": {
+                "Semana1": 0,
+                "Semana2": 0,
+                "Semana3": 0,
+                "Semana4": 0
+            },
+            "CapacidadActualAlmacen": 2500,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 2000,
+            "Detencion": 0
+        },
+        "Bipolis": {
+            "CityName": "Tetrapolis",
+            "DemandaEstimada": {
+                "Semana0": 426,
+                "Semana1": 483,
+                "Semana2": 448,
+                "Semana3": 650,
+                "Semana4": 485,
+                "Semana5": 531,
+                "Semana6": 582,
+                "Semana7": 560
+            },
+            "EnTransito": {
+                "Semana1": 400,
+                "Semana2": 320,
+                "Semana3": 0,
+                "Semana4": 0
+            },
+            "CapacidadActualAlmacen": 500,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 400,
+            "Detencion": 0
+        },
+        "Tripolis": {
+            "CityName": "Monopolis",
+            "DemandaEstimada": {
+                "Semana0": 417,
+                "Semana1": 448,
+                "Semana2": 438,
+                "Semana3": 650,
+                "Semana4": 485,
+                "Semana5": 520,
+                "Semana6": 571,
+                "Semana7": 560
+            },
+            "EnTransito": {
+                "Semana1": 400,
+                "Semana2": 320,
+                "Semana3": 0,
+                "Semana4": 0
+            },
+            "CapacidadActualAlmacen": 500,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 400,
+            "Detencion": 0
+        },
+        "Tetrapolis": {
+            "CityName": "Tripolis",
+            "DemandaEstimada": {
+                "Semana0": 417,
+                "Semana1": 464,
+                "Semana2": 438,
+                "Semana3": 650,
+                "Semana4": 485,
+                "Semana5": 529,
+                "Semana6": 582,
+                "Semana7": 560
+            },
+            "EnTransito": {
+                "Semana1": 400,
+                "Semana2": 320,
+                "Semana3": 0,
+                "Semana4": 0
+            },
+            "CapacidadActualAlmacen": 500,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 400,
+            "Detencion": 0
+        },
+        "Metropolis": {
+            "CityName": "Metropolis",
+            "DemandaEstimada": {
+                "Semana0": 410,
+                "Semana1": 448,
+                "Semana2": 430,
+                "Semana3": 650,
+                "Semana4": 485,
+                "Semana5": 528,
+                "Semana6": 582,
+                "Semana7": 560
+            },
+            "EnTransito": {
+                "Semana1": 400,
+                "Semana2": 0,
+                "Semana3": 0,
+                "Semana4": 0
+            },
+            "CapacidadActualAlmacen": 500,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 400,
+            "Detencion": 0
+        }
+    },
+    "VentasPrevias": 0,
+    "DemandasPrevias": 0,
+    "UtilidadAcumulada": 0,
+    "InversionMantenimiento": 3500
+}

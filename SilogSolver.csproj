@@ -60,6 +60,13 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="params\params-reality.json" />
+    <None Include="params\params-semana0.json" />
+    <None Include="params\params-semana1.json" />
+    <None Include="params\params-semana2.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="params\params-semana2.result.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
