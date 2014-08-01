@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 // ReSharper disable ClassNeverInstantiated.Global
@@ -92,47 +93,13 @@ namespace SilogSolver
     {
         public MateriaPrima()
         {
-            EnTransito = new EnTransito();
         }
         [JsonIgnore]
         public uint Disponible { get { return AlmacenPropio + AlmacenAlquilado + Detencion; } }
         public uint AlmacenPropio { get; set; }
         public uint AlmacenAlquilado { get; set; }
         public uint Detencion { get; set; }
-        public EnTransito EnTransito { get; set; }
-    }
-    public class EnTransito
-    {
-        public uint GetSemana(int index)
-        {
-            if (index == 1)
-                return Semana1;
-            if (index == 2)
-                return Semana2;
-            if (index == 3)
-                return Semana3;
-            if (index == 4)
-                return Semana4;
-            if (index == 5)
-                return Semana5;
-            if (index == 6)
-                return Semana6;
-            if (index == 7)
-                return Semana7;
-            if (index == 8)
-                return Semana8;
-
-            return 0;
-        }
-
-        public uint Semana1 { get; set; }
-        public uint Semana2 { get; set; }
-        public uint Semana3 { get; set; }
-        public uint Semana4 { get; set; }
-        public uint Semana5 { get; set; }
-        public uint Semana6 { get; set; }
-        public uint Semana7 { get; set; }
-        public uint Semana8 { get; set; }
+        public ZeroedList<uint> EnTransito { get; set; }
     }
 
     public class ParametrosProductoTerminado
@@ -155,15 +122,9 @@ namespace SilogSolver
 
     public class ProductoTerminadoCiudad
     {
-        public ProductoTerminadoCiudad()
-        {
-            DemandaEstimada = new DemandaEstimada();
-            EnTransito = new EnTransito();
-        }
-
         public string CityName { get; set; }
-        public DemandaEstimada DemandaEstimada { get; set; }
-        public EnTransito EnTransito { get; set; }
+        public ZeroedList<uint> DemandaEstimada { get; set; }
+        public ZeroedList<uint> EnTransito { get; set; }
         public int CapacidadActualAlmacen { get; set; }
         public int CapacidadEnConstruccion { get; set; }
         [JsonIgnore]
@@ -172,41 +133,23 @@ namespace SilogSolver
         public uint Detencion { get; set; }
     }
 
-    public class DemandaEstimada
+    public class ZeroedList<T> : List<T> 
     {
-        public uint GetSemana(int index)
+
+        public new T this[int index]
         {
-            if (index == 0)
-                return Semana0;
-            if (index == 1)
-                return Semana1;
-            if (index == 2)
-                return Semana2;
-            if (index == 3)
-                return Semana3;
-            if (index == 4)
-                return Semana4;
-            if (index == 5)
-                return Semana5;
-            if (index == 6)
-                return Semana6;
-            if (index == 7)
-                return Semana7;
-            if (index == 8)
-                return Semana8;
-
-            return 0;
+            get
+            {
+                if (index >= Count)
+                {
+                    return default(T);
+                }
+                return base[index];
+            }
+            set
+            {
+            }
         }
-
-        public uint Semana0 { get; set; }
-        public uint Semana1 { get; set; }
-        public uint Semana2 { get; set; }
-        public uint Semana3 { get; set; }
-        public uint Semana4 { get; set; }
-        public uint Semana5 { get; set; }
-        public uint Semana6 { get; set; }
-        public uint Semana7 { get; set; }
-        public uint Semana8 { get; set; }
     }
 
     #endregion

@@ -46,6 +46,7 @@ namespace SilogSolver
         public const uint AlternicPorProductoTerminado = 12;
         public const uint NikelenPorProductoTerminado = 8;
         public const uint ProgesicPorProductoTerminado = 4;
+
         public const uint PrecioDeVenta = 30;
 
         public const double CostoTransporteTierra1000 = 7;

@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Microsoft.SolverFoundation.Services;
+﻿using Microsoft.SolverFoundation.Services;
 
 namespace SilogSolver
 {
@@ -30,7 +29,7 @@ namespace SilogSolver
         }
         public Term AgrandarAlmacen { get; private set; }
         public Term AlquilarAlmacen { get; private set; }
-        public Term UnidadesAProducir { get; set; }
+        public Term UnidadesAProducir { get; private set; }
 
         public IDecisionesMateriaPrima Nikelen { get; private set; }
         public IDecisionesMateriaPrima Progesic { get; private set; }
@@ -65,8 +64,6 @@ namespace SilogSolver
         }
         public Term Aereo { get; private set; }
         public Term Terrestre { get; private set; }
-
-
     }
 
     public class DecisionesAlmacenMP : IDecisionesAlmacenMP
@@ -89,15 +86,13 @@ namespace SilogSolver
     {
         public DecisionesCiudad(Model model, string prefix)
         {
-            AgrandarAlmacen = new Decision(Domain.Boolean, prefix + "_agrandarAlmacen");
+            Transporte = new DecisionesMovimiento(model, prefix);
 
+            AgrandarAlmacen = new Decision(Domain.Boolean, prefix + "_agrandarAlmacen");
             AlmacenamientoPropio = new Decision(Domain.IntegerNonnegative, prefix + "_almacenPropio");
             Detencion = new Decision(Domain.IntegerNonnegative, prefix + "_Detencion");
 
-
             model.AddDecisions((Decision)AgrandarAlmacen, (Decision)AlmacenamientoPropio, (Decision)Detencion);
-
-            Transporte = new DecisionesMovimiento(model, prefix);
         }
 
         public IDecisionesMovimiento Transporte { get; private set; }
@@ -132,7 +127,7 @@ namespace SilogSolver
         }
         public Term AgrandarAlmacen { get; private set; }
         public Term AlquilarAlmacen { get; private set; }
-        public Term UnidadesAProducir { get; set; }
+        public Term UnidadesAProducir { get; private set; }
 
         public IDecisionesMateriaPrima Nikelen { get; private set; }
         public IDecisionesMateriaPrima Progesic { get; private set; }
