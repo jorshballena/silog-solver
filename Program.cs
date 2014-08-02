@@ -640,12 +640,11 @@ namespace SilogSolver
             #region PrintResults
 
             Console.WriteLine(path);
-            Console.WriteLine("====== Modelo Construído ======\n");
+            Console.WriteLine();
 
             try
             {
                 Solution solution = context.Solve(new GurobiDirective());
-                Console.WriteLine("====== Modelo Resuelto ======\n");
                 Report report = solution.GetReport(ReportVerbosity.SolverDetails);
 
                 var ordered = solution.Decisions.GroupBy(c => c.Name.Substring(0, c.Name.IndexOf('_')));
