@@ -37,7 +37,7 @@
     "ProductoTerminado": {
         "Monopolis": {
             "CityName": "Bipolis",
-            "DemandaEstimada": [ 460, 640, 477, 525, 573, 535, 741 ],
+            "DemandaEstimada": [ 490, 615, 450, 495, 558, 521 ],
             "EnTransito": [ 0, 0, 0, 0 ],
             "CapacidadActualAlmacen": 2500,
             "CapacidadEnConstruccion": 0,
@@ -46,7 +46,7 @@
         },
         "Bipolis": {
             "CityName": "Tetrapolis",
-            "DemandaEstimada": [ 448, 650, 485, 531, 582, 560, 750 ],
+            "DemandaEstimada": [ 460, 630, 462, 531, 597, 538 ],
             "EnTransito": [ 560, 280, 0, 0 ],
             "CapacidadActualAlmacen": 500,
             "CapacidadEnConstruccion": 50,
@@ -55,7 +55,7 @@
         },
         "Tripolis": {
             "CityName": "Monopolis",
-            "DemandaEstimada": [ 438, 650, 485, 520, 571, 560, 750 ],
+            "DemandaEstimada": [ 438, 600, 435, 475, 532, 483 ],
             "EnTransito": [ 590, 560, 0, 0 ],
             "CapacidadActualAlmacen": 550,
             "CapacidadEnConstruccion": 50,
@@ -64,7 +64,7 @@
         },
         "Tetrapolis": {
             "CityName": "Tripolis",
-            "DemandaEstimada": [ 438, 650, 485, 529, 582, 560, 750 ],
+            "DemandaEstimada": [ 447, 605, 436, 529, 592, 527 ],
             "EnTransito": [ 0, 0, 44, 0 ],
             "CapacidadActualAlmacen": 500,
             "CapacidadEnConstruccion": 50,
@@ -73,7 +73,7 @@
         },
         "Metropolis": {
             "CityName": "Metropolis",
-            "DemandaEstimada": [ 430, 650, 485, 528, 582, 560, 750, ],
+            "DemandaEstimada": [ 430, 595, 427, 465, 517, 462 ],
             "EnTransito": [ 573, 0, 0, 0 ],
             "CapacidadActualAlmacen": 550,
             "CapacidadEnConstruccion": 50,

@@ -69,6 +69,8 @@
     <None Include="params\params-reality.json" />
     <None Include="params\params-semana0.json" />
     <None Include="params\params-semana1.json" />
+    <None Include="params\params-semana3-sin-prima.json" />
+    <None Include="params\params-semana3-con-prima.json" />
     <None Include="params\params-semana2.json" />
   </ItemGroup>
   <ItemGroup>

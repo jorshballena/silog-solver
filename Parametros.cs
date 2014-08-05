@@ -100,6 +100,7 @@ namespace SilogSolver
         public uint AlmacenAlquilado { get; set; }
         public uint Detencion { get; set; }
         public ZeroedList<uint> EnTransito { get; set; }
+        public bool BloquearOrdenes { get; set; }
     }
 
     public class ParametrosProductoTerminado
@@ -133,7 +134,7 @@ namespace SilogSolver
         public uint Detencion { get; set; }
     }
 
-    public class ZeroedList<T> : List<T> 
+    public class ZeroedList<T> : List<T>
     {
 
         public new T this[int index]
