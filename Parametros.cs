@@ -100,7 +100,8 @@ namespace SilogSolver
         public uint AlmacenAlquilado { get; set; }
         public uint Detencion { get; set; }
         public ZeroedList<uint> EnTransito { get; set; }
-        public bool BloquearOrdenes { get; set; }
+        public bool BloquearOrdenesAereas { get; set; }
+        public bool BloquearOrdenesTerrestres { get; set; }
     }
 
     public class ParametrosProductoTerminado

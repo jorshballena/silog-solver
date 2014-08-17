@@ -1,15 +1,15 @@
 ===Solver Foundation Service Report===
-Date: 8/5/2014 12:44:20 AM
+Date: 8/9/2014 1:39:12 PM
 Version: Microsoft Solver Foundation 3.0.2.10889 Standard Edition
 Model Name: DefaultModel
 Capabilities Applied: MILP
-Solve Time (ms): 330
-Total Time (ms): 510
+Solve Time (ms): 616
+Total Time (ms): 802
 Solve Completion Status: Optimal
 Solver Selected: SolverFoundation.Plugin.Gurobi.GurobiSolver
 ===Solution Details===
 Goals:
-maximizarAcumulado: 58.1751228700922
+maximizarAcumulado: 61.1690965376227
 
 
 =================== s0 ===========================
@@ -31,65 +31,65 @@ s0_alternic_transporte_Terrestre: 28,000
 
 ------------------- nikelen ----------------------
 s0_nikelen_AlmacenAlquilado: 0
-s0_nikelen_AlmacenPropio: 15,996
-s0_nikelen_Detencion: 3,340
+s0_nikelen_AlmacenPropio: 19,336
+s0_nikelen_Detencion: 0
 s0_nikelen_transporte_Aereo: 0
 s0_nikelen_transporte_Terrestre: 0
 
 ------------------- progesic ---------------------
 s0_progesic_AlmacenAlquilado: 0
-s0_progesic_AlmacenPropio: 13,000
-s0_progesic_Detencion: 0
+s0_progesic_AlmacenPropio: 9,660
+s0_progesic_Detencion: 3,340
 s0_progesic_transporte_Aereo: 0
-s0_progesic_transporte_Terrestre: 9,000
+s0_progesic_transporte_Terrestre: 8,660
 
 ------------------- Bipolis ----------------------
 s0_Bipolis_agrandarAlmacen: 0
-s0_Bipolis_almacenPropio: 615
+s0_Bipolis_almacenPropio: 680
 s0_Bipolis_Detencion: 0
 s0_Bipolis_transporte_Aereo: 0
 s0_Bipolis_transporte_Terrestre: 0
-s0_Bipolis_ventas: 615
+s0_Bipolis_ventas: 680
 
 ------------------- Tetrapolis -------------------
 s0_Tetrapolis_agrandarAlmacen: 0
 s0_Tetrapolis_almacenPropio: 550
 s0_Tetrapolis_Detencion: 80
-s0_Tetrapolis_transporte_Aereo: 182
-s0_Tetrapolis_transporte_Terrestre: 597
-s0_Tetrapolis_ventas: 630
+s0_Tetrapolis_transporte_Aereo: 184
+s0_Tetrapolis_transporte_Terrestre: 388
+s0_Tetrapolis_ventas: 614
 
 ------------------- Monopolis --------------------
 s0_Monopolis_agrandarAlmacen: 0
 s0_Monopolis_almacenPropio: 600
 s0_Monopolis_Detencion: 0
 s0_Monopolis_transporte_Aereo: 0
-s0_Monopolis_transporte_Terrestre: 380
-s0_Monopolis_ventas: 600
+s0_Monopolis_transporte_Terrestre: 560
+s0_Monopolis_ventas: 576
 
 ------------------- Tripolis ---------------------
-s0_Tripolis_agrandarAlmacen: 1
+s0_Tripolis_agrandarAlmacen: 0
 s0_Tripolis_almacenPropio: 550
 s0_Tripolis_Detencion: 100
-s0_Tripolis_transporte_Aereo: 391
-s0_Tripolis_transporte_Terrestre: 0
-s0_Tripolis_ventas: 605
+s0_Tripolis_transporte_Aereo: 390
+s0_Tripolis_transporte_Terrestre: 19
+s0_Tripolis_ventas: 578
 
 ------------------- Metropolis -------------------
 s0_Metropolis_agrandarAlmacen: 0
 s0_Metropolis_almacenPropio: 595
 s0_Metropolis_Detencion: 0
-s0_Metropolis_transporte_Aereo: 16
-s0_Metropolis_transporte_Terrestre: 69
-s0_Metropolis_ventas: 595
+s0_Metropolis_transporte_Aereo: 0
+s0_Metropolis_transporte_Terrestre: 29
+s0_Metropolis_ventas: 549
 
 ------------------- tot --------------------------
-s0_tot_gastos_almacenamiento: 16,207
-s0_tot_gastos_produccion: 7,624.305
-s0_tot_gastos_transporte: 25,553.75
+s0_tot_gastos_almacenamiento: 19,473.98
+s0_tot_gastos_produccion: 3,943.825
+s0_tot_gastos_transporte: 24,987.5
 s0_tot_nivelDeServicio: 1
-s0_tot_Utilidad: 41,964.945
-s0_tot_ventas: 91,350
+s0_tot_Utilidad: 41,504.695
+s0_tot_ventas: 89,910
 
 
 
@@ -108,14 +108,14 @@ s1_alternic_AlmacenAlquilado: 0
 s1_alternic_AlmacenPropio: 29,496
 s1_alternic_Detencion: 0
 s1_alternic_transporte_Aereo: 0
-s1_alternic_transporte_Terrestre: 33,752
+s1_alternic_transporte_Terrestre: 32,732
 
 ------------------- nikelen ----------------------
 s1_nikelen_AlmacenAlquilado: 0
 s1_nikelen_AlmacenPropio: 9,824
 s1_nikelen_Detencion: 0
-s1_nikelen_transporte_Aereo: 20,352
-s1_nikelen_transporte_Terrestre: 20,832
+s1_nikelen_transporte_Aereo: 19,500
+s1_nikelen_transporte_Terrestre: 19,788
 
 ------------------- progesic ---------------------
 s1_progesic_AlmacenAlquilado: 0
@@ -125,64 +125,64 @@ s1_progesic_transporte_Aereo: 0
 s1_progesic_transporte_Terrestre: 0
 
 ------------------- Bipolis ----------------------
-s1_Bipolis_agrandarAlmacen: 1
-s1_Bipolis_almacenPropio: 450
+s1_Bipolis_agrandarAlmacen: 0
+s1_Bipolis_almacenPropio: 510
 s1_Bipolis_Detencion: 0
 s1_Bipolis_transporte_Aereo: 0
 s1_Bipolis_transporte_Terrestre: 0
-s1_Bipolis_ventas: 450
+s1_Bipolis_ventas: 510
 
 ------------------- Tetrapolis -------------------
-s1_Tetrapolis_agrandarAlmacen: 1
-s1_Tetrapolis_almacenPropio: 462
+s1_Tetrapolis_agrandarAlmacen: 0
+s1_Tetrapolis_almacenPropio: 480
 s1_Tetrapolis_Detencion: 0
-s1_Tetrapolis_transporte_Aereo: 531
-s1_Tetrapolis_transporte_Terrestre: 0
-s1_Tetrapolis_ventas: 462
+s1_Tetrapolis_transporte_Aereo: 520
+s1_Tetrapolis_transporte_Terrestre: 5
+s1_Tetrapolis_ventas: 480
 
 ------------------- Monopolis --------------------
 s1_Monopolis_agrandarAlmacen: 0
-s1_Monopolis_almacenPropio: 560
+s1_Monopolis_almacenPropio: 584
 s1_Monopolis_Detencion: 0
-s1_Monopolis_transporte_Aereo: 3
-s1_Monopolis_transporte_Terrestre: 0
-s1_Monopolis_ventas: 435
+s1_Monopolis_transporte_Aereo: 0
+s1_Monopolis_transporte_Terrestre: 18
+s1_Monopolis_ventas: 450
 
 ------------------- Tripolis ---------------------
 s1_Tripolis_agrandarAlmacen: 0
-s1_Tripolis_almacenPropio: 436
+s1_Tripolis_almacenPropio: 462
 s1_Tripolis_Detencion: 0
-s1_Tripolis_transporte_Aereo: 520
+s1_Tripolis_transporte_Aereo: 414
 s1_Tripolis_transporte_Terrestre: 0
-s1_Tripolis_ventas: 436
+s1_Tripolis_ventas: 450
 
 ------------------- Metropolis -------------------
 s1_Metropolis_agrandarAlmacen: 0
-s1_Metropolis_almacenPropio: 427
+s1_Metropolis_almacenPropio: 457
 s1_Metropolis_Detencion: 0
-s1_Metropolis_transporte_Aereo: 396
-s1_Metropolis_transporte_Terrestre: 517
-s1_Metropolis_ventas: 427
+s1_Metropolis_transporte_Aereo: 390
+s1_Metropolis_transporte_Terrestre: 560
+s1_Metropolis_ventas: 430
 
 ------------------- tot --------------------------
-s1_tot_gastos_almacenamiento: 10,730.54
-s1_tot_gastos_produccion: 5,644.62
-s1_tot_gastos_transporte: 36,571.5
+s1_tot_gastos_almacenamiento: 12,577.86
+s1_tot_gastos_produccion: 3,676.3
+s1_tot_gastos_transporte: 34,204.5
 s1_tot_nivelDeServicio: 1
-s1_tot_Utilidad: 13,353.34
-s1_tot_ventas: 66,300
+s1_tot_Utilidad: 19,141.34
+s1_tot_ventas: 69,600
 
 
 
 =================== s2 ===========================
 ------------------- agrandarAlmacen --------------
-s2_agrandarAlmacen: 0
+s2_agrandarAlmacen: 1
 
 ------------------- alquilarAlmacen --------------
 s2_alquilarAlmacen: 0
 
 ------------------- unidadesAProducir ------------
-s2_unidadesAProducir: 2,544
+s2_unidadesAProducir: 2,420
 
 ------------------- alternic ---------------------
 s2_alternic_AlmacenAlquilado: 0
@@ -192,11 +192,11 @@ s2_alternic_transporte_Aereo: 0
 s2_alternic_transporte_Terrestre: 25,000
 
 ------------------- nikelen ----------------------
-s2_nikelen_AlmacenAlquilado: 1,140
+s2_nikelen_AlmacenAlquilado: 288
 s2_nikelen_AlmacenPropio: 19,212
 s2_nikelen_Detencion: 0
 s2_nikelen_transporte_Aereo: 0
-s2_nikelen_transporte_Terrestre: 23,336
+s2_nikelen_transporte_Terrestre: 24,552
 
 ------------------- progesic ---------------------
 s2_progesic_AlmacenAlquilado: 0
@@ -206,52 +206,52 @@ s2_progesic_transporte_Aereo: 0
 s2_progesic_transporte_Terrestre: 0
 
 ------------------- Bipolis ----------------------
-s2_Bipolis_agrandarAlmacen: 1
-s2_Bipolis_almacenPropio: 495
+s2_Bipolis_agrandarAlmacen: 0
+s2_Bipolis_almacenPropio: 539
 s2_Bipolis_Detencion: 0
 s2_Bipolis_transporte_Aereo: 0
 s2_Bipolis_transporte_Terrestre: 0
-s2_Bipolis_ventas: 495
+s2_Bipolis_ventas: 539
 
 ------------------- Tetrapolis -------------------
 s2_Tetrapolis_agrandarAlmacen: 0
-s2_Tetrapolis_almacenPropio: 531
+s2_Tetrapolis_almacenPropio: 520
 s2_Tetrapolis_Detencion: 0
-s2_Tetrapolis_transporte_Aereo: 0
+s2_Tetrapolis_transporte_Aereo: 156
 s2_Tetrapolis_transporte_Terrestre: 0
-s2_Tetrapolis_ventas: 531
+s2_Tetrapolis_ventas: 501
 
 ------------------- Monopolis --------------------
 s2_Monopolis_agrandarAlmacen: 0
-s2_Monopolis_almacenPropio: 475
+s2_Monopolis_almacenPropio: 481
 s2_Monopolis_Detencion: 0
-s2_Monopolis_transporte_Aereo: 152
+s2_Monopolis_transporte_Aereo: 0
 s2_Monopolis_transporte_Terrestre: 0
-s2_Monopolis_ventas: 475
+s2_Monopolis_ventas: 469
 
 ------------------- Tripolis ---------------------
 s2_Tripolis_agrandarAlmacen: 0
-s2_Tripolis_almacenPropio: 564
+s2_Tripolis_almacenPropio: 470
 s2_Tripolis_Detencion: 0
-s2_Tripolis_transporte_Aereo: 557
+s2_Tripolis_transporte_Aereo: 526
 s2_Tripolis_transporte_Terrestre: 0
-s2_Tripolis_ventas: 529
+s2_Tripolis_ventas: 470
 
 ------------------- Metropolis -------------------
 s2_Metropolis_agrandarAlmacen: 0
-s2_Metropolis_almacenPropio: 465
+s2_Metropolis_almacenPropio: 446
 s2_Metropolis_Detencion: 0
 s2_Metropolis_transporte_Aereo: 0
-s2_Metropolis_transporte_Terrestre: 24
-s2_Metropolis_ventas: 465
+s2_Metropolis_transporte_Terrestre: 7
+s2_Metropolis_ventas: 446
 
 ------------------- tot --------------------------
-s2_tot_gastos_almacenamiento: 11,491
-s2_tot_gastos_produccion: 7,835.76
-s2_tot_gastos_transporte: 20,634.25
+s2_tot_gastos_almacenamiento: 15,068
+s2_tot_gastos_produccion: 3,944.5
+s2_tot_gastos_transporte: 20,234.75
 s2_tot_nivelDeServicio: 1
-s2_tot_Utilidad: 34,888.99
-s2_tot_ventas: 74,850
+s2_tot_Utilidad: 33,502.75
+s2_tot_ventas: 72,750
 
 
 
@@ -263,76 +263,76 @@ s3_agrandarAlmacen: 0
 s3_alquilarAlmacen: 0
 
 ------------------- unidadesAProducir ------------
-s3_unidadesAProducir: 2,604
+s3_unidadesAProducir: 2,491
 
 ------------------- alternic ---------------------
 s3_alternic_AlmacenAlquilado: 0
-s3_alternic_AlmacenPropio: 32,500
+s3_alternic_AlmacenPropio: 33,988
 s3_alternic_Detencion: 0
 s3_alternic_transporte_Aereo: 0
 s3_alternic_transporte_Terrestre: 0
 
 ------------------- nikelen ----------------------
 s3_nikelen_AlmacenAlquilado: 0
-s3_nikelen_AlmacenPropio: 20,832
+s3_nikelen_AlmacenPropio: 19,928
 s3_nikelen_Detencion: 0
 s3_nikelen_transporte_Aereo: 0
 s3_nikelen_transporte_Terrestre: 17,000
 
 ------------------- progesic ---------------------
 s3_progesic_AlmacenAlquilado: 0
-s3_progesic_AlmacenPropio: 15,584
+s3_progesic_AlmacenPropio: 16,080
 s3_progesic_Detencion: 0
 s3_progesic_transporte_Aereo: 0
 s3_progesic_transporte_Terrestre: 0
 
 ------------------- Bipolis ----------------------
 s3_Bipolis_agrandarAlmacen: 0
-s3_Bipolis_almacenPropio: 558
+s3_Bipolis_almacenPropio: 618
 s3_Bipolis_Detencion: 0
 s3_Bipolis_transporte_Aereo: 0
 s3_Bipolis_transporte_Terrestre: 0
-s3_Bipolis_ventas: 558
+s3_Bipolis_ventas: 608
 
 ------------------- Tetrapolis -------------------
 s3_Tetrapolis_agrandarAlmacen: 0
-s3_Tetrapolis_almacenPropio: 597
-s3_Tetrapolis_Detencion: 0
-s3_Tetrapolis_transporte_Aereo: 538
+s3_Tetrapolis_almacenPropio: 550
+s3_Tetrapolis_Detencion: 13
+s3_Tetrapolis_transporte_Aereo: 520
 s3_Tetrapolis_transporte_Terrestre: 0
-s3_Tetrapolis_ventas: 597
+s3_Tetrapolis_ventas: 563
 
 ------------------- Monopolis --------------------
 s3_Monopolis_agrandarAlmacen: 0
-s3_Monopolis_almacenPropio: 532
+s3_Monopolis_almacenPropio: 572
 s3_Monopolis_Detencion: 0
-s3_Monopolis_transporte_Aereo: 483
+s3_Monopolis_transporte_Aereo: 423
 s3_Monopolis_transporte_Terrestre: 0
-s3_Monopolis_ventas: 532
+s3_Monopolis_ventas: 525
 
 ------------------- Tripolis ---------------------
 s3_Tripolis_agrandarAlmacen: 0
-s3_Tripolis_almacenPropio: 592
+s3_Tripolis_almacenPropio: 526
 s3_Tripolis_Detencion: 0
-s3_Tripolis_transporte_Aereo: 527
+s3_Tripolis_transporte_Aereo: 469
 s3_Tripolis_transporte_Terrestre: 0
-s3_Tripolis_ventas: 592
+s3_Tripolis_ventas: 526
 
 ------------------- Metropolis -------------------
 s3_Metropolis_agrandarAlmacen: 0
-s3_Metropolis_almacenPropio: 517
+s3_Metropolis_almacenPropio: 560
 s3_Metropolis_Detencion: 0
-s3_Metropolis_transporte_Aereo: 438
+s3_Metropolis_transporte_Aereo: 390
 s3_Metropolis_transporte_Terrestre: 0
-s3_Metropolis_ventas: 517
+s3_Metropolis_ventas: 497
 
 ------------------- tot --------------------------
-s3_tot_gastos_almacenamiento: 11,748.32
-s3_tot_gastos_produccion: 7,935.66
-s3_tot_gastos_transporte: 27,478.75
+s3_tot_gastos_almacenamiento: 15,302.96
+s3_tot_gastos_produccion: 3,960.475
+s3_tot_gastos_transporte: 25,228.75
 s3_tot_nivelDeServicio: 1
-s3_tot_Utilidad: 36,717.27
-s3_tot_ventas: 83,880
+s3_tot_Utilidad: 37,077.815
+s3_tot_ventas: 81,570
 
 
 
@@ -344,75 +344,75 @@ s4_agrandarAlmacen: 0
 s4_alquilarAlmacen: 0
 
 ------------------- unidadesAProducir ------------
-s4_unidadesAProducir: 2,917
+s4_unidadesAProducir: 3,069
 
 ------------------- alternic ---------------------
 s4_alternic_AlmacenAlquilado: 0
-s4_alternic_AlmacenPropio: 35,004
+s4_alternic_AlmacenPropio: 36,828
 s4_alternic_Detencion: 0
 s4_alternic_transporte_Aereo: 0
 s4_alternic_transporte_Terrestre: 0
 
 ------------------- nikelen ----------------------
 s4_nikelen_AlmacenAlquilado: 0
-s4_nikelen_AlmacenPropio: 23,328
-s4_nikelen_Detencion: 8
+s4_nikelen_AlmacenPropio: 24,552
+s4_nikelen_Detencion: 0
 s4_nikelen_transporte_Aereo: 0
 s4_nikelen_transporte_Terrestre: 0
 
 ------------------- progesic ---------------------
 s4_progesic_AlmacenAlquilado: 0
-s4_progesic_AlmacenPropio: 11,668
+s4_progesic_AlmacenPropio: 12,616
 s4_progesic_Detencion: 0
 s4_progesic_transporte_Aereo: 0
 s4_progesic_transporte_Terrestre: 0
 
 ------------------- Bipolis ----------------------
 s4_Bipolis_agrandarAlmacen: 0
-s4_Bipolis_almacenPropio: 2,600
-s4_Bipolis_Detencion: 4
+s4_Bipolis_almacenPropio: 2,500
+s4_Bipolis_Detencion: 1
 s4_Bipolis_transporte_Aereo: 0
 s4_Bipolis_transporte_Terrestre: 0
-s4_Bipolis_ventas: 521
+s4_Bipolis_ventas: 570
 
 ------------------- Tetrapolis -------------------
 s4_Tetrapolis_agrandarAlmacen: 0
-s4_Tetrapolis_almacenPropio: 538
+s4_Tetrapolis_almacenPropio: 525
 s4_Tetrapolis_Detencion: 0
 s4_Tetrapolis_transporte_Aereo: 0
 s4_Tetrapolis_transporte_Terrestre: 0
-s4_Tetrapolis_ventas: 538
+s4_Tetrapolis_ventas: 525
 
 ------------------- Monopolis --------------------
 s4_Monopolis_agrandarAlmacen: 0
-s4_Monopolis_almacenPropio: 483
+s4_Monopolis_almacenPropio: 488
 s4_Monopolis_Detencion: 0
 s4_Monopolis_transporte_Aereo: 0
 s4_Monopolis_transporte_Terrestre: 0
-s4_Monopolis_ventas: 483
+s4_Monopolis_ventas: 488
 
 ------------------- Tripolis ---------------------
 s4_Tripolis_agrandarAlmacen: 0
-s4_Tripolis_almacenPropio: 527
+s4_Tripolis_almacenPropio: 488
 s4_Tripolis_Detencion: 0
 s4_Tripolis_transporte_Aereo: 0
 s4_Tripolis_transporte_Terrestre: 0
-s4_Tripolis_ventas: 527
+s4_Tripolis_ventas: 488
 
 ------------------- Metropolis -------------------
 s4_Metropolis_agrandarAlmacen: 0
-s4_Metropolis_almacenPropio: 462
+s4_Metropolis_almacenPropio: 460
 s4_Metropolis_Detencion: 0
 s4_Metropolis_transporte_Aereo: 0
 s4_Metropolis_transporte_Terrestre: 0
-s4_Metropolis_ventas: 462
+s4_Metropolis_ventas: 460
 
 ------------------- tot --------------------------
-s4_tot_gastos_almacenamiento: 12,193.4
-s4_tot_gastos_produccion: 8,456.805
+s4_tot_gastos_almacenamiento: 16,596.78
+s4_tot_gastos_produccion: 4,090.525
 s4_tot_gastos_transporte: 700
 s4_tot_nivelDeServicio: 1
-s4_tot_Utilidad: 54,579.795
+s4_tot_Utilidad: 54,542.695
 s4_tot_ventas: 75,930
 
 
@@ -428,5 +428,5 @@ totales_disponibilidad_PT_Final: 5,000
 totales_nivelDeServicio: 0.969
 
 ------------------- Utilidad ---------------------
-totales_Utilidad: 243,967.2
+totales_Utilidad: 248,232.155
 

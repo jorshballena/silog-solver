@@ -69,6 +69,8 @@
     <None Include="params\params-reality.json" />
     <None Include="params\params-semana0.json" />
     <None Include="params\params-semana1.json" />
+    <None Include="params\params-semana4-sin-prima.json" />
+    <None Include="params\params-semana4-con-prima.json" />
     <None Include="params\params-semana3-sin-prima.json" />
     <None Include="params\params-semana3-con-prima.json" />
     <None Include="params\params-semana2.json" />
@@ -78,6 +80,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="params\params-semana2.result.txt" />
+    <Content Include="params\params-semana3-con-prima.result.txt" />
+    <Content Include="params\params-semana3-sin-prima.result.txt" />
+    <Content Include="params\params-semana4-con-prima.result.txt" />
+    <Content Include="params\params-semana4-sin-prima.result.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

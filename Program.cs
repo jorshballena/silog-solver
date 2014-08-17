@@ -271,24 +271,35 @@ namespace SilogSolver
                     disponibleProgesic[currentWeek] = parametrosEntrada.MateriasPrimas.Progesic.Disponible;
 
 
-                    if (parametrosEntrada.MateriasPrimas.Alternic.BloquearOrdenes)
+                    if (parametrosEntrada.MateriasPrimas.Alternic.BloquearOrdenesAereas)
                     {
-                        model.AddConstraint("s0_Alternic_terrestre_block", dSemana[currentWeek].Alternic.Transporte.Terrestre == 0);
                         model.AddConstraint("s0_Alternic_aereo_block", dSemana[currentWeek].Alternic.Transporte.Aereo == 0);
                     }
 
-                    if (parametrosEntrada.MateriasPrimas.Nikelen.BloquearOrdenes)
+                    if (parametrosEntrada.MateriasPrimas.Alternic.BloquearOrdenesTerrestres)
                     {
-                        model.AddConstraint("s0_Nikelen_terrestre_block", dSemana[currentWeek].Nikelen.Transporte.Terrestre == 0);
+                        model.AddConstraint("s0_Alternic_terrestre_block", dSemana[currentWeek].Alternic.Transporte.Terrestre == 0);
+                    }
+
+                    if (parametrosEntrada.MateriasPrimas.Nikelen.BloquearOrdenesAereas)
+                    {
                         model.AddConstraint("s0_Nikelen_aereo_block", dSemana[currentWeek].Nikelen.Transporte.Aereo == 0);
                     }
 
-                    if (parametrosEntrada.MateriasPrimas.Progesic.BloquearOrdenes)
+                    if (parametrosEntrada.MateriasPrimas.Nikelen.BloquearOrdenesTerrestres)
                     {
-                        model.AddConstraint("s0_Progesic_terrestre_block", dSemana[currentWeek].Progesic.Transporte.Terrestre == 0);
+                        model.AddConstraint("s0_Nikelen_terrestre_block", dSemana[currentWeek].Nikelen.Transporte.Terrestre == 0);
+                    }
+
+                    if (parametrosEntrada.MateriasPrimas.Progesic.BloquearOrdenesAereas)
+                    {
                         model.AddConstraint("s0_Progesic_aereo_block", dSemana[currentWeek].Progesic.Transporte.Aereo == 0);
                     }
 
+                    if (parametrosEntrada.MateriasPrimas.Progesic.BloquearOrdenesTerrestres)
+                    {
+                        model.AddConstraint("s0_Progesic_terrestre_block", dSemana[currentWeek].Progesic.Transporte.Terrestre == 0);
+                    }
                 }
                 else
                 {
@@ -355,14 +366,14 @@ namespace SilogSolver
                     parametrosEntrada.ProductoTerminado.Tetrapolis.DemandaEstimada[currentWeek] +
                     parametrosEntrada.ProductoTerminado.Metropolis.DemandaEstimada[currentWeek];
 
+                var nivelDeServicio = new Decision(Domain.Real, "s" + currentWeek + "_tot_nivelDeServicio");
+                model.AddDecision(nivelDeServicio);
+                model.AddConstraint("s" + currentWeek + "_constraint_nivelDeServicio", nivelDeServicio == unidadesVendidas[currentWeek] / demandaTotalEstimada[currentWeek]);
+
                 ventasTotal = ventasTotal + unidadesVendidas[currentWeek];
                 demandaTotal = demandaTotal + demandaTotalEstimada[currentWeek];
 
                 ventas[currentWeek] = unidadesVendidas[currentWeek] * SilogParams.PrecioDeVenta;
-
-                var nivelDeServicio = new Decision(Domain.Real, "s" + currentWeek + "_tot_nivelDeServicio");
-                model.AddDecision(nivelDeServicio);
-                model.AddConstraint("s" + currentWeek + "_constraint_nivelDeServicio", nivelDeServicio == unidadesVendidas[currentWeek] / demandaTotalEstimada[currentWeek]);
 
                 var decVentas = new Decision(Domain.Real, "s" + currentWeek + "_tot_ventas");
                 model.AddDecision(decVentas);
@@ -413,70 +424,61 @@ namespace SilogSolver
                 model.AddConstraint("s" + currentWeek + "_capacidadAlmancenPropio_MP", capacidadAlmacenPropioMP[currentWeek] >= dSemana[currentWeek].Alternic.Almacen.AlmacenPropio + dSemana[currentWeek].Nikelen.Almacen.AlmacenPropio + dSemana[currentWeek].Progesic.Almacen.AlmacenPropio);
                 model.AddConstraint("s" + currentWeek + "_capacidadAlmancenAlquilado_MP", capacidadAlmacenAlquiladoMP[currentWeek] >= dSemana[currentWeek].Alternic.Almacen.AlmacenAlquilado + dSemana[currentWeek].Nikelen.Almacen.AlmacenAlquilado + dSemana[currentWeek].Progesic.Almacen.AlmacenAlquilado);
 
-                if (currentWeek == numSemanas - 1)
-                {
-                    costosAlmacenamiento[currentWeek] = 0;
-                }
 
-                if (currentWeek > 0)
-                {
-                    costoAlmacenamientoMP[currentWeek - 1] =
-                        dSemana[currentWeek - 1].AgrandarAlmacen * SilogParams.CostoExpansionAlmacenMP +
-                        SilogParams.CostoFijoAlmacenPropioMP * (capacidadAlmacenPropioMP[currentWeek] + dSemana[currentWeek - 1].AgrandarAlmacen * SilogParams.CapacidadAdicionalExpansionMP) +
-                        //Costo almacenamiento propio
-                        (dSemana[currentWeek].Alternic.Almacen.AlmacenPropio * SilogParams.CostoVariableAlmacenPropioMP) +
-                        (dSemana[currentWeek].Nikelen.Almacen.AlmacenPropio * SilogParams.CostoVariableAlmacenPropioMP) +
-                        (dSemana[currentWeek].Progesic.Almacen.AlmacenPropio * SilogParams.CostoVariableAlmacenPropioMP) +
-                        //Costo almacenamiento alquilado
-                        dSemana[currentWeek - 1].AlquilarAlmacen * SilogParams.CostoFijoAlmacenAlquilado +
-                        (dSemana[currentWeek].Alternic.Almacen.AlmacenAlquilado * SilogParams.CostoVariableAlmacenAlquilado) +
-                        (dSemana[currentWeek].Nikelen.Almacen.AlmacenAlquilado * SilogParams.CostoVariableAlmacenAlquilado) +
-                        (dSemana[currentWeek].Progesic.Almacen.AlmacenAlquilado * SilogParams.CostoVariableAlmacenAlquilado) +
-                        //Costo en Detencion
-                        (dSemana[currentWeek].Alternic.Almacen.Detencion * SilogParams.CostoDetencionMP) +
-                        (dSemana[currentWeek].Nikelen.Almacen.Detencion * SilogParams.CostoDetencionMP) +
-                        (dSemana[currentWeek].Progesic.Almacen.Detencion * SilogParams.CostoDetencionMP) +
-                        //Costo de Carry
-                        consumoAlternic[currentWeek - 1] * SilogParams.CostoAcarreoAlmacenPropioMP +
-                        consumoNikelen[currentWeek - 1] * SilogParams.CostoAcarreoAlmacenPropioMP +
-                        consumoProgesic[currentWeek - 1] * SilogParams.CostoAcarreoAlmacenPropioMP;
+                costoAlmacenamientoMP[currentWeek] =
+                    dSemana[currentWeek].AgrandarAlmacen * SilogParams.CostoExpansionAlmacenMP +
+                    SilogParams.CostoFijoAlmacenPropioMP * (capacidadAlmacenPropioMP[currentWeek] + dSemana[currentWeek - 1].AgrandarAlmacen * SilogParams.CapacidadAdicionalExpansionMP) +
+                    //Costo almacenamiento propio
+                    (dSemana[currentWeek].Alternic.Almacen.AlmacenPropio * SilogParams.CostoVariableAlmacenPropioMP) +
+                    (dSemana[currentWeek].Nikelen.Almacen.AlmacenPropio * SilogParams.CostoVariableAlmacenPropioMP) +
+                    (dSemana[currentWeek].Progesic.Almacen.AlmacenPropio * SilogParams.CostoVariableAlmacenPropioMP) +
+                    //Costo almacenamiento alquilado
+                    dSemana[currentWeek - 1].AlquilarAlmacen * SilogParams.CostoFijoAlmacenAlquilado +
+                    (dSemana[currentWeek].Alternic.Almacen.AlmacenAlquilado * SilogParams.CostoVariableAlmacenAlquilado) +
+                    (dSemana[currentWeek].Nikelen.Almacen.AlmacenAlquilado * SilogParams.CostoVariableAlmacenAlquilado) +
+                    (dSemana[currentWeek].Progesic.Almacen.AlmacenAlquilado * SilogParams.CostoVariableAlmacenAlquilado) +
+                    //Costo en Detencion
+                    (dSemana[currentWeek].Alternic.Almacen.Detencion * SilogParams.CostoDetencionMP) +
+                    (dSemana[currentWeek].Nikelen.Almacen.Detencion * SilogParams.CostoDetencionMP) +
+                    (dSemana[currentWeek].Progesic.Almacen.Detencion * SilogParams.CostoDetencionMP) +
+                    //Costo de Carry
+                    consumoAlternic[currentWeek] * SilogParams.CostoAcarreoAlmacenPropioMP +
+                    consumoNikelen[currentWeek] * SilogParams.CostoAcarreoAlmacenPropioMP +
+                    consumoProgesic[currentWeek] * SilogParams.CostoAcarreoAlmacenPropioMP;
 
 
-                    costoAlmacenamientoMonopolis[currentWeek - 1] =
-                        dSemana[currentWeek - 1].Monopolis.AgrandarAlmacen * SilogParams.CostoExpansionAlmacenPT +
-                        dSemana[currentWeek - 1].Monopolis.Ventas * SilogParams.CostoAcarreoAlmacenPropioPT +
-                        model.AddRestriccionAlmacenProductoTerminado(currentWeek, disponibleMonopolis[currentWeek], capacidadAlmacenPTMonopolis[currentWeek], dSemana[currentWeek - 1].Monopolis.AgrandarAlmacen * SilogParams.CapacidadAdicionalExpansionPT, dSemana[currentWeek].Monopolis, parametrosEntrada.ProductoTerminado.Monopolis.CityName);
+                costoAlmacenamientoMonopolis[currentWeek] =
+                    dSemana[currentWeek].Monopolis.AgrandarAlmacen * SilogParams.CostoExpansionAlmacenPT +
+                    dSemana[currentWeek].Monopolis.Ventas * SilogParams.CostoAcarreoAlmacenPropioPT +
+                    model.AddRestriccionAlmacenProductoTerminado(currentWeek, disponibleMonopolis[currentWeek], capacidadAlmacenPTMonopolis[currentWeek], dSemana[currentWeek - 1].Monopolis.AgrandarAlmacen * SilogParams.CapacidadAdicionalExpansionPT, dSemana[currentWeek].Monopolis, parametrosEntrada.ProductoTerminado.Monopolis.CityName);
 
-                    costoAlmacenamientoBipolis[currentWeek - 1] =
-                        dSemana[currentWeek].Bipolis.AgrandarAlmacen * SilogParams.CostoExpansionAlmacenPT +
-                        dSemana[currentWeek].Bipolis.Ventas * SilogParams.CostoAcarreoAlmacenPropioPT +
-                        model.AddRestriccionAlmacenProductoTerminado(currentWeek, disponibleBipolis[currentWeek], capacidadAlmacenPTBipolis[currentWeek], dSemana[currentWeek - 1].Bipolis.AgrandarAlmacen * SilogParams.CapacidadAdicionalExpansionPT, dSemana[currentWeek].Bipolis, parametrosEntrada.ProductoTerminado.Bipolis.CityName);
+                costoAlmacenamientoBipolis[currentWeek] =
+                    dSemana[currentWeek].Bipolis.AgrandarAlmacen * SilogParams.CostoExpansionAlmacenPT +
+                    dSemana[currentWeek].Bipolis.Ventas * SilogParams.CostoAcarreoAlmacenPropioPT +
+                    model.AddRestriccionAlmacenProductoTerminado(currentWeek, disponibleBipolis[currentWeek], capacidadAlmacenPTBipolis[currentWeek], dSemana[currentWeek - 1].Bipolis.AgrandarAlmacen * SilogParams.CapacidadAdicionalExpansionPT, dSemana[currentWeek].Bipolis, parametrosEntrada.ProductoTerminado.Bipolis.CityName);
 
-                    costoAlmacenamientoTripolis[currentWeek - 1] =
-                        dSemana[currentWeek].Tripolis.AgrandarAlmacen * SilogParams.CostoExpansionAlmacenPT +
-                        dSemana[currentWeek].Tripolis.Ventas * SilogParams.CostoAcarreoAlmacenPropioPT +
-                        model.AddRestriccionAlmacenProductoTerminado(currentWeek, disponibleTripolis[currentWeek], capacidadAlmacenPTTripolis[currentWeek], dSemana[currentWeek - 1].Tripolis.AgrandarAlmacen * SilogParams.CapacidadAdicionalExpansionPT, dSemana[currentWeek].Tripolis, parametrosEntrada.ProductoTerminado.Tripolis.CityName);
+                costoAlmacenamientoTripolis[currentWeek] =
+                    dSemana[currentWeek].Tripolis.AgrandarAlmacen * SilogParams.CostoExpansionAlmacenPT +
+                    dSemana[currentWeek].Tripolis.Ventas * SilogParams.CostoAcarreoAlmacenPropioPT +
+                    model.AddRestriccionAlmacenProductoTerminado(currentWeek, disponibleTripolis[currentWeek], capacidadAlmacenPTTripolis[currentWeek], dSemana[currentWeek - 1].Tripolis.AgrandarAlmacen * SilogParams.CapacidadAdicionalExpansionPT, dSemana[currentWeek].Tripolis, parametrosEntrada.ProductoTerminado.Tripolis.CityName);
 
-                    costoAlmacenamientoTetrapolis[currentWeek - 1] =
-                        dSemana[currentWeek].Tetrapolis.AgrandarAlmacen * SilogParams.CostoExpansionAlmacenPT +
-                        dSemana[currentWeek].Tetrapolis.Ventas * SilogParams.CostoAcarreoAlmacenPropioPT +
-                        model.AddRestriccionAlmacenProductoTerminado(currentWeek, disponibleTetrapolis[currentWeek], capacidadAlmacenPTTetrapolis[currentWeek], dSemana[currentWeek - 1].Tetrapolis.AgrandarAlmacen * SilogParams.CapacidadAdicionalExpansionPT, dSemana[currentWeek].Tetrapolis, parametrosEntrada.ProductoTerminado.Tetrapolis.CityName);
+                costoAlmacenamientoTetrapolis[currentWeek] =
+                    dSemana[currentWeek].Tetrapolis.AgrandarAlmacen * SilogParams.CostoExpansionAlmacenPT +
+                    dSemana[currentWeek].Tetrapolis.Ventas * SilogParams.CostoAcarreoAlmacenPropioPT +
+                    model.AddRestriccionAlmacenProductoTerminado(currentWeek, disponibleTetrapolis[currentWeek], capacidadAlmacenPTTetrapolis[currentWeek], dSemana[currentWeek - 1].Tetrapolis.AgrandarAlmacen * SilogParams.CapacidadAdicionalExpansionPT, dSemana[currentWeek].Tetrapolis, parametrosEntrada.ProductoTerminado.Tetrapolis.CityName);
 
-                    costoAlmacenamientoMetropolis[currentWeek - 1] =
-                        dSemana[currentWeek].Metropolis.AgrandarAlmacen * SilogParams.CostoExpansionAlmacenPT +
-                        dSemana[currentWeek].Metropolis.Ventas * SilogParams.CostoAcarreoAlmacenPropioPT +
-                        model.AddRestriccionAlmacenProductoTerminado(currentWeek, disponibleMetropolis[currentWeek], capacidadAlmacenPTMetropolis[currentWeek], dSemana[currentWeek - 1].Metropolis.AgrandarAlmacen * SilogParams.CapacidadAdicionalExpansionPT, dSemana[currentWeek].Metropolis, parametrosEntrada.ProductoTerminado.Metropolis.CityName);
+                costoAlmacenamientoMetropolis[currentWeek] =
+                    dSemana[currentWeek].Metropolis.AgrandarAlmacen * SilogParams.CostoExpansionAlmacenPT +
+                    dSemana[currentWeek].Metropolis.Ventas * SilogParams.CostoAcarreoAlmacenPropioPT +
+                    model.AddRestriccionAlmacenProductoTerminado(currentWeek, disponibleMetropolis[currentWeek], capacidadAlmacenPTMetropolis[currentWeek], dSemana[currentWeek - 1].Metropolis.AgrandarAlmacen * SilogParams.CapacidadAdicionalExpansionPT, dSemana[currentWeek].Metropolis, parametrosEntrada.ProductoTerminado.Metropolis.CityName);
 
-                    costosAlmacenamiento[currentWeek - 1] =
-                        costoAlmacenamientoMP[currentWeek - 1] +
-                        costoAlmacenamientoMonopolis[currentWeek - 1] +
-                        costoAlmacenamientoBipolis[currentWeek - 1] +
-                        costoAlmacenamientoTripolis[currentWeek - 1] +
-                        costoAlmacenamientoTetrapolis[currentWeek - 1] +
-                        costoAlmacenamientoMetropolis[currentWeek - 1];
-                }
-
-
+                costosAlmacenamiento[currentWeek] =
+                    costoAlmacenamientoMP[currentWeek] +
+                    costoAlmacenamientoMonopolis[currentWeek] +
+                    costoAlmacenamientoBipolis[currentWeek] +
+                    costoAlmacenamientoTripolis[currentWeek] +
+                    costoAlmacenamientoTetrapolis[currentWeek] +
+                    costoAlmacenamientoMetropolis[currentWeek];
 
                 #endregion
 
@@ -540,12 +542,7 @@ namespace SilogSolver
 
                 #endregion
 
-                #endregion
 
-            }
-
-            for (int currentWeek = 0; currentWeek < numSemanas; currentWeek++)
-            {
                 var decProduccion = new Decision(Domain.Real, "s" + currentWeek + "_tot_gastos_produccion");
                 model.AddDecision(decProduccion);
                 model.AddConstraint("s" + currentWeek + "const_tot_gastos_produccion", decProduccion == costosProduccion[currentWeek]);
@@ -558,9 +555,10 @@ namespace SilogSolver
                 model.AddDecision(decAlmacenamiento);
                 model.AddConstraint("s" + currentWeek + "const_tot_gastos_almacenamiento", decAlmacenamiento == costosAlmacenamiento[currentWeek]);
 
-
-
                 gastos[currentWeek] = costosProduccion[currentWeek] + costosTransporte[currentWeek] + costosAlmacenamiento[currentWeek];
+
+                #endregion
+
                 utilidad[currentWeek] = ventas[currentWeek] - gastos[currentWeek];
             }
 

@@ -1,5 +1,5 @@
 ﻿{
-    "CantidadDeSemanas": 5,
+    "CantidadDeSemanas": 4,
     "CalcularPrimaPorCargaIncompleta": "Both",
     "Maximize": "Compuesto",
     "ScoresEstimados": {
@@ -8,77 +8,78 @@
         "NivelDeServicioMinimo": 0.90,
         "NivelDeServicioMaximo": 0.99
     },
-    "VentasPrevias": 6043,
-    "DemandasPrevias": 6658,
-    "UtilidadAcumulada": 62462.86,
-    "InversionMantenimiento": 3300,
+    "VentasPrevias": 8818,
+    "DemandasPrevias": 9433,
+    "UtilidadAcumulada": 102260.20,
+    "InversionMantenimiento": 3150,
     "MateriasPrimas": {
-        "CapacidadActualAlmacen": 58000,
-        "CapacidadEnConstruccion": 4000,
+        "CapacidadActualAlmacen": 62000,
+        "CapacidadEnConstruccion": 0,
         "Alternic": {
-            "AlmacenPropio": 29004,
+            "AlmacenPropio": 29496,
             "AlmacenAlquilado": 0,
             "Detencion": 0,
-            "EnTransito": [ 29496, 20268, 0, 0 ]
+            "EnTransito": [ 20268, 28000, 0, 0 ]
         },
         "Nikelen": {
-            "AlmacenPropio": 19336,
+            "AlmacenPropio": 9824,
             "AlmacenAlquilado": 0,
             "Detencion": 0,
             "EnTransito": [ 9824, 0, 0, 0 ],
-            "BloquearOrdenes": true
+            "BloquearOrdenesAereas": true,
+            "BloquearOrdenesTerrestres": true
         },
         "Progesic": {
-            "AlmacenPropio": 9660,
-            "AlmacenAlquilado": 3340,
+            "AlmacenPropio": 9832,
+            "AlmacenAlquilado": 0,
             "Detencion": 0,
-            "EnTransito": [ 6500, 6840, 14000, 6500 ]
+            "EnTransito": [ 6840, 14000, 6500, 8660 ]
         }
     },
-    "ProductoTerminado": {
+     "ProductoTerminado": {
         "Monopolis": {
             "CityName": "Bipolis",
-            "DemandaEstimada": [ 680, 510, 539, 608, 570 ],
+            "DemandaEstimada": [ 473, 540, 587, 550 ],
             "EnTransito": [ 0, 0, 0, 0 ],
             "CapacidadActualAlmacen": 2500,
             "CapacidadEnConstruccion": 0,
-            "AlmacenPropio": 2250,
+            "AlmacenPropio": 2464,
             "Detencion": 0
         },
         "Bipolis": {
             "CityName": "Tetrapolis",
-            "DemandaEstimada": [ 614, 480, 501, 563, 525 ],
-            "EnTransito": [ 280, 0, 0, 0 ],
+            "DemandaEstimada": [ 431, 492, 530, 494 ],
+            "EnTransito": [ 0, 284, 0, 0 ],
             "CapacidadActualAlmacen": 550,
             "CapacidadEnConstruccion": 0,
-            "AlmacenPropio": 550,
-            "Detencion": 80
+            "AlmacenPropio": 516,
+            "Detencion": 0
         },
         "Tripolis": {
             "CityName": "Monopolis",
-            "DemandaEstimada": [ 576, 450, 469, 525, 488 ],
-            "EnTransito": [ 560, 347, 0, 0 ],
+            "DemandaEstimada": [ 397, 454, 485, 450 ],
+            "EnTransito": [ 347, 0, 0, 0 ],
             "CapacidadActualAlmacen": 600,
             "CapacidadEnConstruccion": 0,
             "AlmacenPropio": 600,
-            "Detencion": 0
+            "Detencion": 28
         },
         "Tetrapolis": {
             "CityName": "Tripolis",
-            "DemandaEstimada": [ 578, 450, 470, 526, 488 ],
-            "EnTransito": [ 0, 44, 0, 0 ],
+            "DemandaEstimada": [ 399, 456, 487, 452 ],
+            "EnTransito": [ 44, 0, 293, 0 ],
             "CapacidadActualAlmacen": 550,
             "CapacidadEnConstruccion": 0,
-            "AlmacenPropio": 550,
-            "Detencion": 100
+            "AlmacenPropio": 506,
+            "Detencion": 0
         },
         "Metropolis": {
             "CityName": "Metropolis",
-            "DemandaEstimada": [ 549, 430, 446, 497, 460 ],
-            "EnTransito": [ 411, 0, 0, 0 ],
+            "DemandaEstimada": [ 372, 424, 450, 416 ],
+            "EnTransito": [ 419, 0, 0, 0 ],
             "CapacidadActualAlmacen": 600,
             "CapacidadEnConstruccion": 0,
-            "AlmacenPropio": 595,
+            "AlmacenPropio": 508,
             "Detencion": 0
         }
     }
