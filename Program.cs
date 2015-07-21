@@ -11,27 +11,22 @@ namespace SilogSolver
     public static class Helper
     {
         public static int SemanasDePrimaObligada;
-        public static Decision AddVentasSemana(this Model model, bool maximizeUtilidad, int semana, string ciudad, double nivelDeServicioMinimo, uint demanda, Term disponible)
+        public static void AddVentasSemana(this Model model, IDecisionesCiudad decisiones, int semana, string ciudad, double precio, uint demanda, Term disponible)
         {
+            decisiones.Price = precio;
+            decisiones.Demanda = demanda;
+
             var ventas = new Decision(Domain.IntegerNonnegative, "s" + semana + "_" + ciudad + "_ventas");
             model.AddDecision(ventas);
 
             model.AddConstraint("s" + semana + "_" + ciudad + "_ventas_disponibilidad", ventas <= disponible);
 
-            if (maximizeUtilidad && nivelDeServicioMinimo > 0)
-            {
-                var nds = new Decision(Domain.RealNonnegative, "s" + semana + "_" + ciudad + "_nivelDeServicio");
-                model.AddDecision(nds);
-                model.AddConstraint("s" + semana + "_const_nivelDeServicio_" + ciudad, nds == ventas / demanda);
+            model.AddConstraint("s" + semana + "_" + ciudad + "_ventas_demanda", ventas <= decisiones.Demanda);
 
-                var ventaMinima = Math.Ceiling(demanda * nivelDeServicioMinimo);
 
-                model.AddConstraint("s" + semana + "_ventas_" + ciudad + "_min", ventas >= ventaMinima);
-            }
 
-            model.AddConstraint("s" + semana + "_" + ciudad + "_ventas_demanda", ventas <= demanda);
+            decisiones.Ventas = ventas;
 
-            return ventas;
         }
         public static Term AddRestriccionAlmacenProductoTerminado(this Model model, int semana, Term disponibilidad, Term capacidadAlmacen, Term capacidadEnConstruccion, IDecisionesCiudad ciudad, string city)
         {
@@ -133,13 +128,69 @@ namespace SilogSolver
     {
         static void Main(string[] args)
         {
-            SolverContext context = SolverContext.GetContext();
-            Model model = context.CreateModel();
+
 
             string path = args.Length < 1 ? "params.json" : args[0];
 
             var data = System.IO.File.ReadAllText(path);
             var parametrosEntrada = JsonConvert.DeserializeObject<ParametrosDeEntrada>(data);
+            Console.WriteLine(path);
+            Console.WriteLine();
+
+            var solution = asd(parametrosEntrada);
+            var report = solution.GetReport(ReportVerbosity.SolverDetails);
+
+            var ordered = solution.Decisions.GroupBy(c => c.Name.Substring(0, c.Name.IndexOf('_')));
+
+            var result = new StringBuilder();
+
+            result.Append(string.Format("{0}", report));
+
+            foreach (var t in ordered)
+            {
+                result.AppendLine();
+                result.AppendLine();
+                result.AppendLine((" ".PadLeft(20, '=') + t.Key + " ").PadRight(50, '='));
+
+                IGrouping<string, Decision> t1 = t;
+                var subG = t.GroupBy(c => GetNextIdentifier(c.Name, t1.Key.Length + 1));
+
+                foreach (var subGg in subG)
+                {
+                    if (subGg.Key == "dnp")
+                        continue;
+
+                    result.AppendLine((" ".PadLeft(20, '-') + subGg.Key + " ").PadRight(50, '-'));
+
+                    foreach (var dec in subGg.OrderBy(c => c.Name))
+                    {
+                        result.AppendLine(string.Format("{0}: {1}", dec.Name, Math.Round(dec.ToDouble(), 3).ToString("##,0.####")));
+                    }
+                    result.AppendLine();
+                }
+            }
+
+            Console.Write(result.ToString());
+
+            Console.WriteLine();
+
+            Console.WriteLine("Guardar resultados en disco? Y/N");
+
+            var rr = Console.ReadLine();
+
+            if (rr.Trim().ToLowerInvariant() == "y")
+            {
+                var outPath = path.Replace(".json", "") + ".result.txt";
+
+                System.IO.File.WriteAllText(outPath, result.ToString());
+            }
+
+        }
+
+        private static Solution asd(ParametrosDeEntrada parametrosEntrada)
+        {
+            SolverContext context = SolverContext.GetContext();
+            Model model = context.CreateModel();
 
             #region Variables
 
@@ -149,7 +200,7 @@ namespace SilogSolver
             {
                 Console.WriteLine("No. de Semanas Inválidos");
                 Console.ReadLine();
-                return;
+                return null;
             }
 
             if (numSemanas <= 6)
@@ -161,7 +212,7 @@ namespace SilogSolver
             {
                 Console.WriteLine("No se pueden calcular ambas primas de carga incompleta para más de 6 semenas");
                 Console.ReadLine();
-                return;
+                return null;
             }
 
             Helper.SemanasDePrimaObligada = 7 - numSemanas;
@@ -321,9 +372,7 @@ namespace SilogSolver
 
                 #region Ventas
 
-                salidaMonopolis[currentWeek] = (dSemana[currentWeek].Bipolis.Transporte.Aereo +
-                                                 dSemana[currentWeek].Bipolis.Transporte.Terrestre +
-                                                 dSemana[currentWeek].Tripolis.Transporte.Aereo +
+                salidaMonopolis[currentWeek] = ( 
                                                  dSemana[currentWeek].Tripolis.Transporte.Terrestre +
                                                  dSemana[currentWeek].Tetrapolis.Transporte.Aereo +
                                                  dSemana[currentWeek].Tetrapolis.Transporte.Terrestre +
@@ -347,11 +396,11 @@ namespace SilogSolver
                     disponibleMetropolis[currentWeek] = (disponibleMetropolis[currentWeek - 1] - dSemana[currentWeek - 1].Metropolis.Ventas) + dSemana[currentWeek - 1].Metropolis.Transporte.Aereo + dSemana[currentWeek - 2].Metropolis.Transporte.Terrestre + parametrosEntrada.ProductoTerminado.Metropolis.EnTransito[currentWeek - 1];
                 }
 
-                dSemana[currentWeek].Monopolis.Ventas = model.AddVentasSemana(parametrosEntrada.Maximize == ParametrosDeEntrada.MaximizeParams.Utilidad, currentWeek, parametrosEntrada.ProductoTerminado.Monopolis.CityName, parametrosEntrada.NivelDeServicioMínimo, parametrosEntrada.ProductoTerminado.Monopolis.DemandaEstimada[currentWeek], disponibleMonopolis[currentWeek]);
-                dSemana[currentWeek].Bipolis.Ventas = model.AddVentasSemana(parametrosEntrada.Maximize == ParametrosDeEntrada.MaximizeParams.Utilidad, currentWeek, parametrosEntrada.ProductoTerminado.Bipolis.CityName, parametrosEntrada.NivelDeServicioMínimo, parametrosEntrada.ProductoTerminado.Bipolis.DemandaEstimada[currentWeek], disponibleBipolis[currentWeek]);
-                dSemana[currentWeek].Tripolis.Ventas = model.AddVentasSemana(parametrosEntrada.Maximize == ParametrosDeEntrada.MaximizeParams.Utilidad, currentWeek, parametrosEntrada.ProductoTerminado.Tripolis.CityName, parametrosEntrada.NivelDeServicioMínimo, parametrosEntrada.ProductoTerminado.Tripolis.DemandaEstimada[currentWeek], disponibleTripolis[currentWeek]);
-                dSemana[currentWeek].Tetrapolis.Ventas = model.AddVentasSemana(parametrosEntrada.Maximize == ParametrosDeEntrada.MaximizeParams.Utilidad, currentWeek, parametrosEntrada.ProductoTerminado.Tetrapolis.CityName, parametrosEntrada.NivelDeServicioMínimo, parametrosEntrada.ProductoTerminado.Tetrapolis.DemandaEstimada[currentWeek], disponibleTetrapolis[currentWeek]);
-                dSemana[currentWeek].Metropolis.Ventas = model.AddVentasSemana(parametrosEntrada.Maximize == ParametrosDeEntrada.MaximizeParams.Utilidad, currentWeek, parametrosEntrada.ProductoTerminado.Metropolis.CityName, parametrosEntrada.NivelDeServicioMínimo, parametrosEntrada.ProductoTerminado.Metropolis.DemandaEstimada[currentWeek], disponibleMetropolis[currentWeek]);
+                model.AddVentasSemana(dSemana[currentWeek].Monopolis, currentWeek, parametrosEntrada.ProductoTerminado.Monopolis.CityName, parametrosEntrada.ProductoTerminado.Monopolis.Precios[currentWeek], parametrosEntrada.ProductoTerminado.Monopolis.DemandaEstimada[currentWeek], disponibleMonopolis[currentWeek]);
+                model.AddVentasSemana(dSemana[currentWeek].Bipolis, currentWeek, parametrosEntrada.ProductoTerminado.Bipolis.CityName, parametrosEntrada.ProductoTerminado.Bipolis.Precios[currentWeek], parametrosEntrada.ProductoTerminado.Bipolis.DemandaEstimada[currentWeek], disponibleBipolis[currentWeek]);
+                model.AddVentasSemana(dSemana[currentWeek].Tripolis, currentWeek, parametrosEntrada.ProductoTerminado.Tripolis.CityName, parametrosEntrada.ProductoTerminado.Tripolis.Precios[currentWeek], parametrosEntrada.ProductoTerminado.Tripolis.DemandaEstimada[currentWeek], disponibleTripolis[currentWeek]);
+                model.AddVentasSemana(dSemana[currentWeek].Tetrapolis, currentWeek, parametrosEntrada.ProductoTerminado.Tetrapolis.CityName, parametrosEntrada.ProductoTerminado.Tetrapolis.Precios[currentWeek], parametrosEntrada.ProductoTerminado.Tetrapolis.DemandaEstimada[currentWeek], disponibleTetrapolis[currentWeek]);
+                model.AddVentasSemana(dSemana[currentWeek].Metropolis, currentWeek, parametrosEntrada.ProductoTerminado.Metropolis.CityName, parametrosEntrada.ProductoTerminado.Metropolis.Precios[currentWeek], parametrosEntrada.ProductoTerminado.Metropolis.DemandaEstimada[currentWeek], disponibleMetropolis[currentWeek]);
 
                 unidadesVendidas[currentWeek] = dSemana[currentWeek].Monopolis.Ventas +
                     dSemana[currentWeek].Bipolis.Ventas +
@@ -373,7 +422,11 @@ namespace SilogSolver
                 ventasTotal = ventasTotal + unidadesVendidas[currentWeek];
                 demandaTotal = demandaTotal + demandaTotalEstimada[currentWeek];
 
-                ventas[currentWeek] = unidadesVendidas[currentWeek] * SilogParams.PrecioDeVenta;
+                ventas[currentWeek] = dSemana[currentWeek].Monopolis.Ventas * dSemana[currentWeek].Monopolis.Price +
+                    dSemana[currentWeek].Bipolis.Ventas * dSemana[currentWeek].Bipolis.Price +
+                    dSemana[currentWeek].Tripolis.Ventas * dSemana[currentWeek].Tripolis.Price +
+                    dSemana[currentWeek].Tetrapolis.Ventas * dSemana[currentWeek].Tetrapolis.Price +
+                    dSemana[currentWeek].Metropolis.Ventas * dSemana[currentWeek].Metropolis.Price;
 
                 var decVentas = new Decision(Domain.Real, "s" + currentWeek + "_tot_ventas");
                 model.AddDecision(decVentas);
@@ -568,19 +621,19 @@ namespace SilogSolver
             disponibleAlternic[numSemanas] = disponibleAlternic[numSemanas - 1] - consumoAlternic[numSemanas - 1] + dSemana[numSemanas - 1].Alternic.Transporte.Aereo + dSemana[numSemanas - 3].Alternic.Transporte.Terrestre;
             model.AddDecision(dispFinalAlternic);
             model.AddConstraint("decisionPT_Alternic", dispFinalAlternic == disponibleAlternic[numSemanas]);
-            model.AddConstraint("s" + numSemanas + "_consumoMax_alternic", disponibleAlternic[numSemanas] >= 25000);
+            model.AddConstraint("s" + numSemanas + "_consumoMax_alternic", disponibleAlternic[numSemanas] >= 24000);
 
             var dispFinalNikelen = new Decision(Domain.IntegerNonnegative, "totales_disponibilidad_Nikelen_Final");
             disponibleNikelen[numSemanas] = disponibleNikelen[numSemanas - 1] - consumoNikelen[numSemanas - 1] + dSemana[numSemanas - 1].Nikelen.Transporte.Aereo + dSemana[numSemanas - 2].Nikelen.Transporte.Terrestre;
             model.AddDecision(dispFinalNikelen);
             model.AddConstraint("decisionPT_Nikelen", dispFinalNikelen == disponibleNikelen[numSemanas]);
-            model.AddConstraint("s" + numSemanas + "_consumoMax_nikelen", disponibleNikelen[numSemanas] >= 17000);
+            model.AddConstraint("s" + numSemanas + "_consumoMax_nikelen", disponibleNikelen[numSemanas] >= 16000);
 
             var dispFinalProgesic = new Decision(Domain.IntegerNonnegative, "totales_disponibilidad_Progesic_Final");
             disponibleProgesic[numSemanas] = disponibleProgesic[numSemanas - 1] - consumoProgesic[numSemanas - 1] + dSemana[numSemanas - 2].Progesic.Transporte.Aereo + dSemana[numSemanas - 5].Progesic.Transporte.Terrestre;
             model.AddDecision(dispFinalProgesic);
             model.AddConstraint("decisionPT_Progesic", dispFinalProgesic == disponibleProgesic[numSemanas]);
-            model.AddConstraint("s" + numSemanas + "_consumoMax_progesic", disponibleProgesic[numSemanas] >= 9000);
+            model.AddConstraint("s" + numSemanas + "_consumoMax_progesic", disponibleProgesic[numSemanas] >= 8000);
 
             Term disponibilidadFinal =
                 //Disponible Monopolis
@@ -674,65 +727,17 @@ namespace SilogSolver
 
             #region PrintResults
 
-            Console.WriteLine(path);
-            Console.WriteLine();
+
 
             try
             {
-                Solution solution = context.Solve(new GurobiDirective());
-                Report report = solution.GetReport(ReportVerbosity.SolverDetails);
-
-                var ordered = solution.Decisions.GroupBy(c => c.Name.Substring(0, c.Name.IndexOf('_')));
-
-                var result = new StringBuilder();
-
-                result.Append(string.Format("{0}", report));
-
-                foreach (var t in ordered)
-                {
-                    result.AppendLine();
-                    result.AppendLine();
-                    result.AppendLine((" ".PadLeft(20, '=') + t.Key + " ").PadRight(50, '='));
-
-                    IGrouping<string, Decision> t1 = t;
-                    var subG = t.GroupBy(c => GetNextIdentifier(c.Name, t1.Key.Length + 1));
-
-                    foreach (var subGg in subG)
-                    {
-                        if (subGg.Key == "dnp")
-                            continue;
-
-                        result.AppendLine((" ".PadLeft(20, '-') + subGg.Key + " ").PadRight(50, '-'));
-
-                        foreach (var dec in subGg.OrderBy(c => c.Name))
-                        {
-                            result.AppendLine(string.Format("{0}: {1}", dec.Name, Math.Round(dec.ToDouble(), 3).ToString("##,0.####")));
-                        }
-                        result.AppendLine();
-                    }
-                }
-
-                Console.Write(result.ToString());
-
-                Console.WriteLine();
-
-                Console.WriteLine("Guardar resultados en disco? Y/N");
-
-                var rr = Console.ReadLine();
-
-                if (rr.Trim().ToLowerInvariant() == "y")
-                {
-                    var outPath = path.Replace(".json", "") + ".result.txt";
-
-                    System.IO.File.WriteAllText(outPath, result.ToString());
-                }
-
-
+                return context.Solve();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.InnerException.Message);
                 Console.ReadLine();
+                return null;
             }
             #endregion
         }

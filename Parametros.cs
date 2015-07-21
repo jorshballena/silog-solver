@@ -133,8 +133,9 @@ namespace SilogSolver
         public uint Disponible { get { return AlmacenPropio + Detencion; } }
         public uint AlmacenPropio { get; set; }
         public uint Detencion { get; set; }
+        public ZeroedList<double> Precios { get; set; }
     }
-
+    
     public class ZeroedList<T> : List<T>
     {
 

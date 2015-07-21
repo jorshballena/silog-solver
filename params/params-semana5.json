@@ -1,0 +1,89 @@
+﻿{
+    "CantidadDeSemanas": 3,
+    "CalcularPrimaPorCargaIncompleta": "Both",
+    "Maximize": "Compuesto",
+    "ScoresEstimados": {
+        "UtilidadMinima": -100000,
+        "UtilidadMaxima": 270000,
+        "NivelDeServicioMinimo": 0.80,
+        "NivelDeServicioMaximo": 0.98
+    },
+    "VentasPrevias": 11026,
+    "DemandasPrevias": 11641,
+    "UtilidadAcumulada": 128263.5,
+    "InversionMantenimiento": 3150,
+    "MateriasPrimas": {
+        "CapacidadActualAlmacen": 62000,
+        "CapacidadEnConstruccion": 4000,
+        "Alternic": {
+            "AlmacenPropio": 35028,
+            "AlmacenAlquilado": 0,
+            "Detencion": 0,
+            "EnTransito": [ 28000, 22196, 0, 0 ]
+        },
+        "Nikelen": {
+            "AlmacenPropio": 9824,
+            "AlmacenAlquilado": 0,
+            "Detencion": 0,
+            "EnTransito": [ 0, 0, 0, 0 ]
+        },
+        "Progesic": {
+            "AlmacenPropio": 11760,
+            "AlmacenAlquilado": 0,
+            "Detencion": 0,
+            "EnTransito": [ 14000, 6500, 8660, 0 ]
+        }
+    },
+    "ProductoTerminado": {
+        "Monopolis": {
+            "CityName": "Bipolis",
+            "DemandaEstimada": [ 1000, 587, 550 ],
+            "Precios": [ 19, 30, 30 ],
+            "EnTransito": [ 0, 0, 0, 0 ],
+            "CapacidadActualAlmacen": 2500,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 1283,
+            "Detencion": 0
+        },
+        "Bipolis": {
+            "CityName": "Tetrapolis",
+            "DemandaEstimada": [ 350, 530, 494 ],
+            "Precios": [ 35.5, 30, 30 ],
+            "EnTransito": [ 284, 480, 0, 0 ],
+            "CapacidadActualAlmacen": 550,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 459,
+            "Detencion": 0
+        },
+        "Tripolis": {
+            "CityName": "Monopolis",
+            "DemandaEstimada": [ 400, 485, 450 ],
+            "Precios": [ 34, 30, 30 ],
+            "EnTransito": [ 0, 0, 0, 0 ],
+            "CapacidadActualAlmacen": 600,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 556,
+            "Detencion": 0
+        },
+        "Tetrapolis": {
+            "CityName": "Tripolis",
+            "DemandaEstimada": [ 480, 487, 452 ],
+            "Precios": [ 34, 30, 30 ],
+            "EnTransito": [ 0, 293, 293, 0 ],
+            "CapacidadActualAlmacen": 550,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 520,
+            "Detencion": 0
+        },
+        "Metropolis": {
+            "CityName": "Metropolis",
+            "DemandaEstimada": [ 424, 450, 416 ],
+            "Precios": [ 30, 30, 30 ],
+            "EnTransito": [ 319, 0, 0, 0 ],
+            "CapacidadActualAlmacen": 600,
+            "CapacidadEnConstruccion": 0,
+            "AlmacenPropio": 542,
+            "Detencion": 0
+        }
+    }
+}

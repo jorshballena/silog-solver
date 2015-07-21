@@ -91,7 +91,6 @@ namespace SilogSolver
             AgrandarAlmacen = new Decision(Domain.Boolean, prefix + "_agrandarAlmacen");
             AlmacenamientoPropio = new Decision(Domain.IntegerNonnegative, prefix + "_almacenPropio");
             Detencion = new Decision(Domain.IntegerNonnegative, prefix + "_Detencion");
-
             model.AddDecisions((Decision)AgrandarAlmacen, (Decision)AlmacenamientoPropio, (Decision)Detencion);
         }
 
@@ -101,6 +100,8 @@ namespace SilogSolver
         public Term AlmacenamientoPropio { get; private set; }
         public Term Detencion { get; private set; }
         public Term Ventas { get; set; }
+        public Term Price { get; set; }
+        public Term Demanda { get; set; }
     }
 
     #endregion
@@ -184,6 +185,8 @@ namespace SilogSolver
             AgrandarAlmacen = 0;
             AlmacenamientoPropio = 0;
             Detencion = 0;
+            Price = 0;
+            Demanda = 0;
             Transporte = new NullDecisionesMovimiento();
         }
 
@@ -193,6 +196,8 @@ namespace SilogSolver
         public Term AlmacenamientoPropio { get; private set; }
         public Term Detencion { get; private set; }
         public Term Ventas { get; set; }
+        public Term Price { get; set; }
+        public Term Demanda { get; set; }
     }
     #endregion
 
@@ -241,6 +246,8 @@ namespace SilogSolver
         Term AlmacenamientoPropio { get; }
         Term Detencion { get; }
         Term Ventas { get; set; }
+        Term Price { get; set; }
+        Term Demanda { get; set; }
     }
     #endregion
 }
